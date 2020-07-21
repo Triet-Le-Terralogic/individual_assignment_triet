@@ -1,5 +1,11 @@
 $primary: #bd10e0;
-$border-width: 2px;
+$border-width: 1px;
+$gray-400: #dfe2e6;
+$gray-600: #6b6c6f;
+$input-focus-width: 0;
+$input-focus-box-shadow: none;
+$input-focus-border-color: $gray-400;
+$input-placeholder-color: $gray-400;
 
 @mixin fill-button($isFulfill) {
   @if $isFulfill {

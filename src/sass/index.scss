@@ -14,11 +14,18 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+// Shared
+%input-icon-shared {
+  border: $border-width solid $gray-400;
+  padding: 10px;
+}
+// Global style
 
 // Button
 .Button {
   width: 160px;
   height: 40px;
+  border-width: 2px;
 
   &--state-fulfill {
     @include fill-button(true);
@@ -28,5 +35,33 @@ code {
     @include fill-button(false);
     // color: $primary;
     // background-color: $white;;
+  }
+}
+
+// Form-cell
+.Form-cell {
+  label {
+    color: $gray-600;
+    font-weight: bold;
+    margin-left: 10px;
+    text-transform: capitalize;
+  }
+
+  input {
+    padding: 12px;
+    border-left: none;
+    border-radius: 0 20rem 20rem 0;
+  }
+
+  &__icon--left {
+    @extend %input-icon-shared;
+    border-radius: 20rem 0 0 20rem;
+    border-right: 0;
+  }
+
+  &__icon--right {
+    @extend %input-icon-shared;
+    border-radius: 0 20rem 20rem 0;
+    border-left: 0;
   }
 }
