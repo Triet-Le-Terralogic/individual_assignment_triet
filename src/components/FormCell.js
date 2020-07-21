@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import eyeIcon from "../assets/img/Suche03.svg";
 
 export default function FormCell({
@@ -46,3 +47,10 @@ export default function FormCell({
     </div>
   );
 }
+
+FormCell.propTypes = {
+  inputType: PropTypes.string,
+  inputLabel: PropTypes.string,
+  inputPlaceholder: PropTypes.string,
+  inputIcon: PropTypes.string, // In fact, inputIcon is a url string!
+};
