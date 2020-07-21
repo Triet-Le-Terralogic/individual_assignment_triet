@@ -1,4 +1,5 @@
 @import "./font";
+@import "./custom";
 
 body {
   margin: 0;
@@ -12,4 +13,20 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+// Button
+.Button {
+  width: 160px;
+  height: 40px;
+
+  &--state-fulfill {
+    @include fill-button(true);
+  }
+
+  &--state-empty {
+    @include fill-button(false);
+    // color: $primary;
+    // background-color: $white;;
+  }
 }

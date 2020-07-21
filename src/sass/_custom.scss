@@ -1,1 +1,14 @@
+$primary: #bd10e0;
+$border-width: 2px;
+
+@mixin fill-button($isFulfill) {
+  @if $isFulfill {
+    color: $white;
+    background-color: $primary;
+  } @else {
+    color: $primary;
+    background-color: $white;
+  }
+}
+
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
