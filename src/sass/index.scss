@@ -44,6 +44,7 @@ code {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin: 12px 0;
   }
 }
 
@@ -54,6 +55,7 @@ code {
     font-weight: bold;
     margin-left: 10px;
     text-transform: capitalize;
+    text-align: left;
   }
 
   input {
@@ -152,6 +154,7 @@ code {
   label {
     color: $gray-600;
     font-size: 14px;
+    font-weight: 600;
     margin: 0 0 0 10px;
   }
 }
@@ -187,7 +190,16 @@ code {
 }
 
 @media only screen and (max-width: map-get($grid-breakpoints, "md" )) {
+  .Form-wrapper {
+    width: 70%;
+  }
   .Button {
     width: 120px;
+  }
+}
+
+@media only screen and (max-width: map-get($grid-breakpoints, "sm" )) {
+  .Form-wrapper {
+    width: 80%;
   }
 }
