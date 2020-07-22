@@ -10,20 +10,21 @@ export default function FormWrapper({
 }) {
   const inputList = formData.map((cell) => (
     <FormCell
-      key={cell.inputID}
-      inputType={cell.inputType}
-      inputLabel={cell.inputLabel}
-      inputPlaceholder={cell.inputPlaceholder}
-      inputIcon={cell.inputIcon}
+      formType={cell.formType}
+      key={cell.id}
+      inputType={cell.config.type}
+      inputLabel={cell.config.label}
+      inputPlaceholder={cell.config.placeholder}
+      inputIcon={cell.config.icon}
     />
   ));
 
   const buttonList = buttonData.map((btn) => (
     <Button
-      key={btn.buttonID}
-      buttonTitle={btn.buttonTitle}
-      isFull={btn.isFull}
-      buttonType={btn.buttonType}
+      key={btn.id}
+      buttonTitle={btn.config.title}
+      isFull={btn.config.isFull}
+      buttonType={btn.config.type}
     />
   ));
 

@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import eyeIcon from "../assets/img/eye_icon.svg";
 
 export default function FormCell({
+  formType = "guess",
   inputType = "text",
   inputLabel = "default",
   inputPlaceholder = "default",
@@ -22,7 +23,7 @@ export default function FormCell({
 
     inputEyeIcon = (
       <div
-        className="Form-cell__icon--right input-group-prepend"
+        className="Form-cell__icon-right input-group-prepend"
         onClick={() => onRevealHandler()}
       >
         <img src={eyeIcon} alt="Eye icon" />
@@ -30,11 +31,11 @@ export default function FormCell({
     );
   }
 
-  return (
+  const formCellGuess = (
     <div className="Form-cell form-group">
       <label>{inputLabel}</label>
       <div className="input-group flex-nowrap">
-        <div className="Form-cell__icon--left input-group-prepend">
+        <div className="Form-cell__icon-left input-group-prepend">
           <img src={inputIcon} alt={`${inputLabel}'s icon`} />
         </div>
         <input
@@ -46,10 +47,20 @@ export default function FormCell({
       </div>
     </div>
   );
+
+  const formCellAdmin = null;
+
+  return (
+    <>
+      {formType === "guess" && formCellGuess}
+      {formType === "admin" && formCellAdmin}
+    </>
+  );
 }
 
 FormCell.propTypes = {
-  inputType: PropTypes.oneOf(["email", "password", "text", "tel"]),
+  formType: PropTypes.oneOf(["guess", "admin"]),
+  inputType: PropTypes.oneOf(["email", "password", "text", "tel", "file"]),
   inputLabel: PropTypes.string,
   inputPlaceholder: PropTypes.string,
   inputIcon: PropTypes.string, // In fact, inputIcon is a url string!

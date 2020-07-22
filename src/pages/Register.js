@@ -3,67 +3,81 @@ import FormWrapper from "../components/FormWrapper";
 import Logo from "../components/Logo";
 import emaiIcon from "../assets/img/email_icon.svg";
 import keyIcon from "../assets/img/key_icon.svg";
+import { transformToArr } from "../helper";
 
 export default function Register() {
-  const formData = [
-    {
-      inputID: 0,
-      inputType: "email",
-      inputLabel: "Email",
-      inputPlaceholder: "Enter your email",
-      inputIcon: emaiIcon,
+  const xformData = {
+    email: {
+      formType: "guess",
+      config: {
+        type: "email",
+        label: "Email",
+        placeholder: "Enter your email",
+        icon: emaiIcon,
+      },
     },
-    {
-      inputID: 1,
-      inputType: "password",
-      inputLabel: "Password",
-      inputPlaceholder: "Enter your password",
-      inputIcon: keyIcon,
+    password: {
+      formType: "guess",
+      config: {
+        type: "password",
+        label: "Password",
+        placeholder: "Enter your password",
+        icon: keyIcon,
+      },
     },
-    {
-      inputID: 2,
-      inputType: "password",
-      inputLabel: "Confirm Password",
-      inputPlaceholder: "Enter your password",
-      inputIcon: keyIcon,
+    confirmPassword: {
+      formType: "guess",
+      config: {
+        type: "password",
+        label: "Confirm Password",
+        placeholder: "Enter your password",
+        icon: keyIcon,
+      },
     },
-    {
-      inputID: 3,
-      inputType: "text",
-      inputLabel: "Full Name",
-      inputPlaceholder: "Enter your name",
-      inputIcon: emaiIcon,
+    name: {
+      formType: "guess",
+      config: {
+        type: "text",
+        label: "Full Name",
+        placeholder: "Enter your name",
+        icon: emaiIcon,
+      },
     },
-    {
-      inputID: 4,
-      inputType: "tel",
-      inputLabel: "Phone number",
-      inputPlaceholder: "Enter your phone number",
-      inputIcon: emaiIcon,
+    phone: {
+      formType: "guess",
+      config: {
+        type: "tel",
+        label: "Phone Number",
+        placeholder: "Enter your phone number",
+        icon: emaiIcon,
+      },
     },
-  ];
+  };
 
-  const buttonData = [
-    {
-      buttonID: 0,
-      buttonTitle: "Back",
-      isFull: false,
+  const buttonData = {
+    back: {
       buttonType: "button",
+      config: {
+        isFull: false,
+        title: "back",
+      },
     },
-    {
-      buttonID: 1,
-      buttonTitle: "Submit",
-      isFull: true,
+    submit: {
       buttonType: "submit",
+      config: {
+        isFull: true,
+        title: "Submit",
+      },
     },
-  ];
+  };
+
   return (
     <div className="Login container text-center text-sm-left">
       <Logo />
       <FormWrapper
         formTitle="Register your account"
-        formData={formData}
-        buttonData={buttonData}
+        formData={transformToArr(xformData)}
+        buttonData={transformToArr(buttonData)}
       />
     </div>
   );

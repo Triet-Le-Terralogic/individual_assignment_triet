@@ -4,46 +4,54 @@ import CheckBox from "../components/CheckBox";
 import Logo from "../components/Logo";
 import emaiIcon from "../assets/img/email_icon.svg";
 import keyIcon from "../assets/img/key_icon.svg";
+import { transformToArr } from "../helper";
 
 export default function Login() {
-  const formData = [
-    {
-      inputID: 0,
-      inputType: "text",
-      inputLabel: "Email",
-      inputPlaceholder: "Enter your email",
-      inputIcon: emaiIcon,
+  const formData = {
+    email: {
+      formType: "guess",
+      config: {
+        type: "email",
+        label: "Email",
+        placeholder: "Enter your email",
+        icon: emaiIcon,
+      },
     },
-    {
-      inputID: 1,
-      inputType: "password",
-      inputLabel: "Password",
-      inputPlaceholder: "Enter your password",
-      inputIcon: keyIcon,
+    password: {
+      formType: "guess",
+      config: {
+        type: "password",
+        label: "Password",
+        placeholder: "Enter your password",
+        icon: keyIcon,
+      },
     },
-  ];
+  };
 
-  const buttonData = [
-    {
-      buttonID: 0,
-      buttonTitle: "Register",
-      isFull: false,
+  const buttonData = {
+    register: {
       buttonType: "button",
+      config: {
+        isFull: false,
+        title: "Register",
+      },
     },
-    {
-      buttonID: 1,
-      buttonTitle: "Login",
-      isFull: true,
+    login: {
       buttonType: "submit",
+      config: {
+        isFull: true,
+        title: "Login",
+      },
     },
-  ];
+  };
+
   return (
     <div className="Login container text-center text-sm-left">
       <Logo />
       <FormWrapper
         formTitle="Login your account"
-        formData={formData}
-        buttonData={buttonData}
+        formData={transformToArr(formData)}
+        buttonData={transformToArr(buttonData)}
       />
       <CheckBox checkBoxTitle="Remember password" />
     </div>
