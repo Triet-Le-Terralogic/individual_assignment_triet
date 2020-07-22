@@ -49,7 +49,7 @@ export default function FormCell({
 }
 
 FormCell.propTypes = {
-  inputType: PropTypes.string,
+  inputType: PropTypes.oneOf(["email", "password", "text", "tel"]),
   inputLabel: PropTypes.string,
   inputPlaceholder: PropTypes.string,
   inputIcon: PropTypes.string, // In fact, inputIcon is a url string!

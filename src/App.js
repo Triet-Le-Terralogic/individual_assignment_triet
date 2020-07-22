@@ -1,12 +1,14 @@
 import React from "react";
 import "./App.css";
-import Login from "./pages/Login";
 import GuessLayout from "./layout/GuessLayout";
+// import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 function App() {
   return (
     <GuessLayout>
-      <Login />
+      {/* <Login /> */}
+      <Register />
     </GuessLayout>
   );
 }

@@ -20,7 +20,7 @@ export default function Button({
 }
 
 Button.propTypes = {
-  buttonType: Proptypes.string,
+  buttonType: Proptypes.oneOf(["button", "submit"]),
   buttonTitle: Proptypes.string.isRequired,
   isFull: Proptypes.bool,
 };
