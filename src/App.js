@@ -4,6 +4,7 @@ import FormWrapper from "./components/FormWrapper";
 import emaiIcon from "./assets/img/email_icon.svg";
 import keyIcon from "./assets/img/key_icon.svg";
 import CheckBox from "./components/CheckBox";
+import Logo from "./components/Logo";
 
 function App() {
   const formData = [
@@ -39,6 +40,7 @@ function App() {
   ];
   return (
     <div className="App">
+      <Logo />
       <FormWrapper
         formTitle="Login your account"
         formData={formData}
