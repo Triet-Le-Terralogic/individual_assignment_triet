@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import eyeIcon from "../assets/img/Suche03.svg";
+import eyeIcon from "../assets/img/eye_icon.svg";
 
 export default function FormCell({
   inputType = "text",

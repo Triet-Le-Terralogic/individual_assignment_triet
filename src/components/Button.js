@@ -2,7 +2,7 @@ import React from "react";
 import Proptypes from "prop-types";
 
 export default function Button({
-  buttonType = "text",
+  buttonType = "button",
   buttonTitle = "Click!",
   isFull = true,
 }) {
@@ -20,7 +20,7 @@ export default function Button({
 }
 
 Button.propTypes = {
-  buttonType: Proptypes.string.isRequired,
+  buttonType: Proptypes.string,
   buttonTitle: Proptypes.string.isRequired,
   isFull: Proptypes.bool,
 };
