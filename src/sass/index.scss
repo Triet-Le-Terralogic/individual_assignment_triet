@@ -1,6 +1,8 @@
 @import "./font";
 @import "./custom";
 
+$border-width-custom: 2px;
+
 body {
   margin: 0;
   font-family: "Proxima", BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -25,7 +27,7 @@ code {
 .Button {
   width: 160px;
   height: 40px;
-  border-width: 2px;
+  border-width: $border-width-custom;
 
   &--state-fulfill {
     @include fill-button(true);
@@ -63,5 +65,78 @@ code {
     @extend %input-icon-shared;
     border-radius: 0 20rem 20rem 0;
     border-left: 0;
+  }
+}
+
+// FormWrapper
+.Form-wrapper {
+  span:first-child {
+    font-size: 8px;
+    color: $gray-600;
+    text-transform: uppercase;
+  }
+
+  &__title {
+    text-transform: capitalize;
+    font-size: 24px;
+  }
+}
+
+// Checkbox
+.Check-box {
+  position: relative;
+  display: inline-block;
+
+  input {
+    position: absolute;
+    top: 3px;
+    left: -10px;
+    height: 18px;
+    width: 18px;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 1;
+
+    &:checked ~ .Check-box--custom {
+      border-color: $primary;
+    }
+
+    &:checked ~ .Check-box--custom::after {
+      height: 10px;
+      width: 5px;
+      top: 1px;
+      left: 5px;
+      border: 2px solid #bd10e0;
+      border-width: 0 2px 2px 0;
+      transform: scale(1) rotate(45deg);
+    }
+  }
+
+  &--custom {
+    position: absolute;
+    top: 3px;
+    left: -15px;
+    height: 18px;
+    width: 18px;
+    border: $border-width-custom solid $gray-400;
+    transition: all 0.2s ease;
+
+    &::after {
+      position: absolute;
+      content: "";
+      top: 1px;
+      left: 1px;
+      height: 0;
+      width: 0;
+      background-color: $white;
+      transition: all 0.1s ease;
+      transform: scale(0) rotate(0);
+    }
+  }
+
+  label {
+    color: $gray-600;
+    font-size: 14px;
+    margin: 0 0 0 10px;
   }
 }
