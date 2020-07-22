@@ -23,7 +23,7 @@ export default function FormCell({
 
     inputEyeIcon = (
       <div
-        className="Form-cell__icon-right input-group-prepend"
+        className="Form-cell-guess__icon-right input-group-prepend"
         onClick={() => onRevealHandler()}
       >
         <img src={eyeIcon} alt="Eye icon" />
@@ -32,10 +32,10 @@ export default function FormCell({
   }
 
   const formCellGuess = (
-    <div className="Form-cell form-group">
+    <div className="Form-cell-guess form-group">
       <label>{inputLabel}</label>
       <div className="input-group flex-nowrap">
-        <div className="Form-cell__icon-left input-group-prepend">
+        <div className="Form-cell-guess__icon-left input-group-prepend">
           <img src={inputIcon} alt={`${inputLabel}'s icon`} />
         </div>
         <input
@@ -48,7 +48,19 @@ export default function FormCell({
     </div>
   );
 
-  const formCellAdmin = null;
+  const formCellAdmin = (
+    <div className="Form-cell-admin form-group">
+      <label>{inputLabel}</label>
+      <div className="input-group flex-nowrap">
+        <input
+          className={inputStyle}
+          type={reveal ? "text" : inputType}
+          placeholder={inputPlaceholder}
+        />
+        {inputEyeIcon}
+      </div>
+    </div>
+  );
 
   return (
     <>

@@ -9,7 +9,7 @@ import { transformToArr } from "../helper";
 export default function Login() {
   const formData = {
     email: {
-      formType: "guess",
+      formType: "admin",
       config: {
         type: "email",
         label: "Email",
