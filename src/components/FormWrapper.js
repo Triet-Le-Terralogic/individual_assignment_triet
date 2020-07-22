@@ -28,11 +28,11 @@ export default function FormWrapper({
   ));
 
   return (
-    <div className="Form-wrapper">
+    <div className="Form-wrapper mx-auto">
       <span>Start your personal photo experient</span>
       <h3 className="Form-wrapper__title">{formTitle}</h3>
       {inputList}
-      {buttonList}
+      <div className="Button__list">{buttonList}</div>
     </div>
   );
 }

@@ -2,6 +2,7 @@
 @import "./custom";
 
 $border-width-custom: 2px;
+$form-margin-bottom-custom: 18px;
 
 body {
   margin: 0;
@@ -38,6 +39,12 @@ code {
     // color: $primary;
     // background-color: $white;;
   }
+
+  &__list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
 
 // Form-cell
@@ -71,14 +78,22 @@ code {
 // FormWrapper
 .Form-wrapper {
   span:first-child {
+    display: inline-block;
     font-size: 8px;
     color: $gray-600;
     text-transform: uppercase;
+    margin: 20px 0;
   }
 
   &__title {
     text-transform: capitalize;
     font-size: 24px;
+    font-weight: bold;
+    margin-bottom: $form-margin-bottom-custom;
+  }
+
+  .form-group {
+    margin-bottom: $form-margin-bottom-custom;
   }
 }
 
@@ -138,5 +153,41 @@ code {
     color: $gray-600;
     font-size: 14px;
     margin: 0 0 0 10px;
+  }
+}
+
+// Logo
+.Logo {
+  width: 100%;
+  margin: 20px 0;
+}
+
+// Layout: GuessLayout
+.Guess-layout {
+  padding: 0;
+
+  &__bitmap {
+    width: 100%;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .row {
+    margin: 102px 0;
+  }
+}
+
+@media only screen and (max-width: map-get($grid-breakpoints, "lg" )) {
+  .Form-wrapper {
+    width: 60%;
+  }
+}
+
+@media only screen and (max-width: map-get($grid-breakpoints, "md" )) {
+  .Button {
+    width: 120px;
   }
 }
