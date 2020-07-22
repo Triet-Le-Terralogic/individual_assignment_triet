@@ -1,0 +1,10 @@
+// Mixin
+@mixin fill-button($isFulfill) {
+  @if $isFulfill {
+    color: $white;
+    background-color: $primary;
+  } @else {
+    color: $primary;
+    background-color: $white;
+  }
+}

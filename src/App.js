@@ -1,6 +1,5 @@
 import React from "react";
-import "./App.css";
-import GuessLayout from "./layout/GuessLayout";
+import GuessLayout from "./layouts/GuessLayout";
 // import Login from "./pages/Login";
 import Register from "./pages/Register";
 

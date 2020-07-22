@@ -1,0 +1,21 @@
+// FormWrapper
+.Form-wrapper {
+  span:first-child {
+    display: inline-block;
+    font-size: 8px;
+    color: $gray-600;
+    text-transform: uppercase;
+    margin: 20px 0;
+  }
+
+  &__title {
+    text-transform: capitalize;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: $form-margin-bottom-custom;
+  }
+
+  .form-group {
+    margin-bottom: $form-margin-bottom-custom;
+  }
+}

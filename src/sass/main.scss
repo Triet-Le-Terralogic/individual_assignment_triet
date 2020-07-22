@@ -1,0 +1,39 @@
+@import "./abstracts";
+@import "./components";
+@import "./layouts";
+
+// Global style
+body {
+  margin: 0;
+  font-family: "Proxima", BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+@media only screen and (max-width: map-get($grid-breakpoints, "lg" )) {
+  .Form-wrapper {
+    width: 60%;
+  }
+}
+
+@media only screen and (max-width: map-get($grid-breakpoints, "md" )) {
+  .Form-wrapper {
+    width: 70%;
+  }
+  .Button {
+    width: 120px;
+  }
+}
+
+@media only screen and (max-width: map-get($grid-breakpoints, "sm" )) {
+  .Form-wrapper {
+    width: 80%;
+  }
+}
