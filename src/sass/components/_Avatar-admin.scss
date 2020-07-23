@@ -4,7 +4,7 @@
 	justify-content: flex-start;
 	align-items: center;
 
-	&--image {
+	&__image {
 		width: 60px;
 		height: 60px;
 	}
@@ -15,7 +15,7 @@
 		left: 38px;
 	}
 
-	&--title {
+	&__title {
 		color: $admin-font-color;
 		text-transform: capitalize;
 		font-size: 32px;

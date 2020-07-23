@@ -7,53 +7,54 @@ import keyIcon from "../assets/img/key_icon.svg";
 import { transformToArr } from "../helper";
 
 export default function Login() {
-  const formData = {
-    email: {
-      formType: "admin",
-      config: {
-        type: "email",
-        label: "Email",
-        placeholder: "Enter your email",
-        icon: emaiIcon,
-      },
-    },
-    password: {
-      formType: "guess",
-      config: {
-        type: "password",
-        label: "Password",
-        placeholder: "Enter your password",
-        icon: keyIcon,
-      },
-    },
-  };
+	const formData = {
+		email: {
+			formType: "admin",
+			config: {
+				type: "email",
+				label: "Email",
+				placeholder: "Enter your email",
+				icon: emaiIcon,
+			},
+		},
+		password: {
+			formType: "guess",
+			config: {
+				type: "password",
+				label: "Password",
+				placeholder: "Enter your password",
+				icon: keyIcon,
+			},
+		},
+	};
 
-  const buttonData = {
-    register: {
-      buttonType: "button",
-      config: {
-        isFull: false,
-        title: "Register",
-      },
-    },
-    login: {
-      buttonType: "submit",
-      config: {
-        isFull: true,
-        title: "Login",
-      },
-    },
-  };
+	const buttonData = {
+		register: {
+			buttonType: "button",
+			config: {
+				isFull: false,
+				title: "Register",
+			},
+		},
+		login: {
+			buttonType: "submit",
+			config: {
+				isFull: true,
+				title: "Login",
+			},
+		},
+	};
 
-  return (
-    <div className="Login container text-center text-sm-left">
-      <Logo />
-      <FormWrapper
-        formTitle="Login your account"
-        formData={transformToArr(formData)}
-        buttonData={transformToArr(buttonData)}
-      />
-      <CheckBox checkBoxTitle="Remember password" />
-    </div>
-  );
+	return (
+		<div className="Login container text-center text-sm-left">
+			<Logo />
+			<span className="Login__slogan">Start your personal photo experient</span>
+			<FormWrapper
+				formTitle="Login your account"
+				formData={transformToArr(formData)}
+				buttonData={transformToArr(buttonData)}
+			/>
+			<CheckBox checkBoxTitle="Remember password" />
+		</div>
+	);
 }

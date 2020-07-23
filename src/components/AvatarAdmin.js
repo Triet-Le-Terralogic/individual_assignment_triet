@@ -8,7 +8,7 @@ export default function AvatarAdmin({
 }) {
 	return (
 		<div className="Avatar-admin">
-			<div className="Avatar-admin--image">
+			<div className="Avatar-admin__image">
 				<img
 					src={avatarImg}
 					className="img-fluid rounded-circle"
@@ -18,7 +18,7 @@ export default function AvatarAdmin({
 			<span>
 				<img className="img-fluid" src={penIcon} alt="pen icon" />
 			</span>
-			<p className="Avatar-admin--title">{avatarTitle}</p>
+			<p className="Avatar-admin__title">{avatarTitle}</p>
 		</div>
 	);
 }
