@@ -8,8 +8,8 @@ import Profile from "./pages/Profile";
 function App() {
 	return (
 		// <GuessLayout>
-		//   <Login />
-		//   <Register />
+		// 	<Login />
+		// 	<Register />
 		// </GuessLayout>
 		<AdminLayout>
 			<Profile />

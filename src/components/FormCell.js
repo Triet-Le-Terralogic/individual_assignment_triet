@@ -16,15 +16,28 @@ export default function FormCell({
 		setReveal(!reveal);
 	};
 
+	let dynamicEyeIcon = "";
+	switch (formType) {
+		case "guess":
+			dynamicEyeIcon = "guess";
+			break;
+		case "admin":
+			dynamicEyeIcon = "admin";
+			break;
+		default:
+			dynamicEyeIcon = "";
+	}
+
 	let inputStyle = inputType === "file" ? "form-control-file" : "form-control";
 	let inputEyeIcon = null;
 
 	if (inputType === "password" || (inputType === "text" && reveal)) {
-		inputStyle = `${inputStyle} border-right-0`;
+		inputStyle =
+			formType === "guess" ? `${inputStyle} border-right-0` : inputStyle;
 
 		inputEyeIcon = (
 			<div
-				className="Form-cell-guess__icon-right input-group-prepend"
+				className={`Form-cell-${dynamicEyeIcon}__icon-right input-group-prepend`}
 				onClick={() => onRevealHandler()}
 			>
 				<img src={eyeIcon} alt="Eye icon" />

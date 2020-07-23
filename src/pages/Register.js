@@ -6,7 +6,7 @@ import keyIcon from "../assets/img/key_icon.svg";
 import { transformToArr } from "../helper";
 
 export default function Register() {
-	const xformData = {
+	const formData = {
 		email: {
 			formType: "guess",
 			config: {
@@ -79,7 +79,7 @@ export default function Register() {
 			</span>
 			<FormWrapper
 				formTitle="Register your account"
-				formData={transformToArr(xformData)}
+				formData={transformToArr(formData)}
 				buttonData={transformToArr(buttonData)}
 			/>
 		</div>

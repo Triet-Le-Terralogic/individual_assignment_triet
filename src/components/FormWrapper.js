@@ -33,7 +33,7 @@ export default function FormWrapper({
 		<div className="Form-wrapper mx-auto">
 			<h3 className="Form-wrapper__title">{formTitle}</h3>
 			<div className="container p-0">
-				<div className="row no-gutters">{inputList}</div>
+				<div className="row">{inputList}</div>
 			</div>
 			<div className="Button__list">{buttonList}</div>
 		</div>
