@@ -6,7 +6,7 @@ export default function HeaderAdmin({
 	headerInfo = "default",
 }) {
 	return (
-		<header className="Header--admin">
+		<header className="Header-admin">
 			<div>
 				<p>{headerTitle}</p>
 				<span>{headerInfo}</span>
