@@ -1,0 +1,28 @@
+.Header--admin {
+	color: $white;
+	width: 100%;
+	height: 130px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	background-color: $secondary;
+	border-radius: 6px;
+	box-shadow: 0 30px 50px 0 rgba(45, 44, 101, 0.05);
+
+	> div {
+		margin-left: 90px;
+	}
+
+	p {
+		font-size: 32px;
+		font-weight: bold;
+		margin-bottom: 12px;
+		text-transform: capitalize;
+	}
+
+	span {
+		font-size: 12px;
+		opacity: 0.8;
+	}
+}
