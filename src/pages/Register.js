@@ -8,7 +8,7 @@ import { transformToArr } from "../helper";
 export default function Register() {
 	const formData = {
 		email: {
-			formType: "guess",
+			pageType: "guess",
 			config: {
 				type: "email",
 				label: "Email",
@@ -17,7 +17,7 @@ export default function Register() {
 			},
 		},
 		password: {
-			formType: "guess",
+			pageType: "guess",
 			config: {
 				type: "password",
 				label: "Password",
@@ -26,7 +26,7 @@ export default function Register() {
 			},
 		},
 		confirmPassword: {
-			formType: "guess",
+			pageType: "guess",
 			config: {
 				type: "password",
 				label: "Confirm Password",
@@ -35,7 +35,7 @@ export default function Register() {
 			},
 		},
 		name: {
-			formType: "guess",
+			pageType: "guess",
 			config: {
 				type: "text",
 				label: "Full Name",
@@ -44,7 +44,7 @@ export default function Register() {
 			},
 		},
 		phone: {
-			formType: "guess",
+			pageType: "guess",
 			config: {
 				type: "tel",
 				label: "Phone Number",
@@ -56,6 +56,7 @@ export default function Register() {
 
 	const buttonData = {
 		back: {
+			pageType: "guess",
 			buttonType: "button",
 			config: {
 				isFull: false,
@@ -63,6 +64,7 @@ export default function Register() {
 			},
 		},
 		submit: {
+			pageType: "guess",
 			buttonType: "submit",
 			config: {
 				isFull: true,
@@ -78,6 +80,7 @@ export default function Register() {
 				Start your personal photo experient
 			</span>
 			<FormWrapper
+				pageType="guess"
 				formTitle="Register your account"
 				formData={transformToArr(formData)}
 				buttonData={transformToArr(buttonData)}

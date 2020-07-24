@@ -1,21 +1,31 @@
 // Button
 .Button {
-  width: 160px;
-  height: 40px;
-  border-width: $border-width-custom;
+	&-guess {
+		width: 160px;
+		height: 40px;
+		border-width: $border-width-custom;
 
-  &--state-fulfill {
-    @include fill-button(true);
-  }
+		&--state-fulfill {
+			@include fill-button(true);
+		}
 
-  &--state-empty {
-    @include fill-button(false);
-  }
+		&--state-empty {
+			@include fill-button(false);
+		}
+	}
 
-  &__list {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 12px 0;
-  }
+	&-admin {
+		height: 60px;
+		padding: 16px 45px;
+		border-width: $border-width-custom;
+		margin-right: 35px;
+
+		&--state-fulfill {
+			@include fill-button(true);
+		}
+
+		&--state-empty {
+			@include fill-button(false);
+		}
+	}
 }

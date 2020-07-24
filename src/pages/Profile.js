@@ -8,7 +8,7 @@ import ButtonListWrapper from "../components/ButtonListWrapper";
 export default function Profile() {
 	const infoFormData = {
 		fullName: {
-			formType: "admin",
+			pageType: "admin",
 			customStyle: "col-lg-6 offset-reverse-6",
 			config: {
 				type: "text",
@@ -17,7 +17,7 @@ export default function Profile() {
 			},
 		},
 		password: {
-			formType: "admin",
+			pageType: "admin",
 			customStyle: "col-lg-6",
 			config: {
 				type: "email",
@@ -26,7 +26,7 @@ export default function Profile() {
 			},
 		},
 		phone: {
-			formType: "admin",
+			pageType: "admin",
 			customStyle: "col-lg-6",
 			config: {
 				type: "tel",
@@ -38,7 +38,7 @@ export default function Profile() {
 
 	const changePasswordFormData = {
 		currentPassword: {
-			formType: "admin",
+			pageType: "admin",
 			customStyle: "col-lg-6 offset-reverse-6",
 			config: {
 				type: "password",
@@ -47,7 +47,7 @@ export default function Profile() {
 			},
 		},
 		newPassword: {
-			formType: "admin",
+			pageType: "admin",
 			customStyle: "col-lg-6",
 			config: {
 				type: "password",
@@ -56,7 +56,7 @@ export default function Profile() {
 			},
 		},
 		confirmPassword: {
-			formType: "admin",
+			pageType: "admin",
 			customStyle: "col-lg-6",
 			config: {
 				type: "password",
@@ -68,6 +68,7 @@ export default function Profile() {
 
 	const buttonData = {
 		save: {
+			pageType: "admin",
 			buttonType: "button",
 			config: {
 				isFull: true,
@@ -75,6 +76,7 @@ export default function Profile() {
 			},
 		},
 		submit: {
+			pageType: "admin",
 			buttonType: "button",
 			config: {
 				isFull: false,
@@ -87,7 +89,7 @@ export default function Profile() {
 		<AvatarAdmin avatarTitle="donald trump" avatarImg={trumpAvatar} />
 	);
 	return (
-		<div className="Profile container text-center text-sm-left">
+		<div className="Profile container text-center text-lg-left">
 			<AdminSection
 				sectionHeader={avatarAdmin}
 				sectionData={transformToArr(infoFormData)}
@@ -96,7 +98,10 @@ export default function Profile() {
 				sectionHeader="Change Password"
 				sectionData={transformToArr(changePasswordFormData)}
 			/>
-			<ButtonListWrapper buttonData={transformToArr(buttonData)} />
+			<ButtonListWrapper
+				buttonData={transformToArr(buttonData)}
+				pageType="admin"
+			/>
 		</div>
 	);
 }

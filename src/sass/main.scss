@@ -22,6 +22,14 @@ code {
 	.Form-wrapper {
 		width: 60%;
 	}
+
+	.Buton {
+		&-admin {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+	}
 }
 
 @media only screen and (max-width: map-get($grid-breakpoints, "md" )) {
@@ -29,7 +37,9 @@ code {
 		width: 70%;
 	}
 	.Button {
-		width: 120px;
+		&-guess {
+			width: 120px;
+		}
 	}
 }
 

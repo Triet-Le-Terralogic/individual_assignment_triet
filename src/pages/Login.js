@@ -9,7 +9,7 @@ import { transformToArr } from "../helper";
 export default function Login() {
 	const formData = {
 		email: {
-			formType: "admin",
+			pageType: "admin",
 			config: {
 				type: "email",
 				label: "Email",
@@ -18,7 +18,7 @@ export default function Login() {
 			},
 		},
 		password: {
-			formType: "guess",
+			pageType: "guess",
 			config: {
 				type: "password",
 				label: "Password",
@@ -50,6 +50,7 @@ export default function Login() {
 			<Logo />
 			<span className="Login__slogan">Start your personal photo experient</span>
 			<FormWrapper
+				pageType="guess"
 				formTitle="Login your account"
 				formData={transformToArr(formData)}
 				buttonData={transformToArr(buttonData)}

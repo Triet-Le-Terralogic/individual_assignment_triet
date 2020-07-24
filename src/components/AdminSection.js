@@ -21,6 +21,6 @@ export default function AdminSection({
 }
 
 AdminSection.propTypes = {
-	sectionHeader: PropTypes.oneOf([PropTypes.string, PropTypes.node]),
+	sectionHeader: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
 	sectionData: PropTypes.arrayOf(PropTypes.object),
 };

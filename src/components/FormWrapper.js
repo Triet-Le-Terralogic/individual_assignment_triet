@@ -4,6 +4,7 @@ import FormCell from "./FormCell";
 import ButtonListWrapper from "./ButtonListWrapper";
 
 export default function FormWrapper({
+	pageType = "guess",
 	formTitle = "",
 	formData = [],
 	buttonData = [],
@@ -11,7 +12,7 @@ export default function FormWrapper({
 	const inputList = formData.map((cell) => (
 		<FormCell
 			customStyle={cell.customStyle}
-			formType={cell.formType}
+			pageType={cell.pageType}
 			key={cell.id}
 			inputType={cell.config.type}
 			inputLabel={cell.config.label}
@@ -26,12 +27,13 @@ export default function FormWrapper({
 			<div className="container p-0">
 				<div className="row">{inputList}</div>
 			</div>
-			<ButtonListWrapper buttonData={buttonData} />
+			<ButtonListWrapper buttonData={buttonData} pageType={pageType} />
 		</div>
 	);
 }
 
 FormWrapper.propTypes = {
+	pageType: PropTypes.oneOf(["guess", "admin"]),
 	formTitle: PropTypes.string,
 	formData: PropTypes.array.isRequired,
 	buttonData: PropTypes.array,

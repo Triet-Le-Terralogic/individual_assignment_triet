@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import eyeIcon from "../assets/img/eye_icon.svg";
 
 export default function FormCell({
-	formType = "guess",
+	pageType = "guess",
 	inputType = "text",
 	inputLabel = "default",
 	inputPlaceholder = "default",
@@ -17,7 +17,7 @@ export default function FormCell({
 	};
 
 	let dynamicEyeIcon = "";
-	switch (formType) {
+	switch (pageType) {
 		case "guess":
 			dynamicEyeIcon = "guess";
 			break;
@@ -33,7 +33,7 @@ export default function FormCell({
 
 	if (inputType === "password" || (inputType === "text" && reveal)) {
 		inputStyle =
-			formType === "guess" ? `${inputStyle} border-right-0` : inputStyle;
+			pageType === "guess" ? `${inputStyle} border-right-0` : inputStyle;
 
 		inputEyeIcon = (
 			<div
@@ -78,14 +78,14 @@ export default function FormCell({
 
 	return (
 		<>
-			{formType === "guess" && formCellGuess}
-			{formType === "admin" && formCellAdmin}
+			{pageType === "guess" && formCellGuess}
+			{pageType === "admin" && formCellAdmin}
 		</>
 	);
 }
 
 FormCell.propTypes = {
-	formType: PropTypes.oneOf(["guess", "admin"]),
+	pageType: PropTypes.oneOf(["guess", "admin"]),
 	inputType: PropTypes.oneOf(["email", "password", "text", "tel", "file"]),
 	inputLabel: PropTypes.string,
 	inputPlaceholder: PropTypes.string,
