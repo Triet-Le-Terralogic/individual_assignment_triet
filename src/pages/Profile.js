@@ -2,9 +2,8 @@ import React from "react";
 import AvatarAdmin from "../components/AvatarAdmin";
 import AdminSection from "../components/AdminSection";
 import trumpAvatar from "../assets/img/test_avatar.jpg";
-// import FormWrapper from "../components/FormWrapper";
-// import { transformToArr } from "../helper";
 import { transformToArr } from "../helper";
+import ButtonListWrapper from "../components/ButtonListWrapper";
 
 export default function Profile() {
 	const infoFormData = {
@@ -67,6 +66,23 @@ export default function Profile() {
 		},
 	};
 
+	const buttonData = {
+		save: {
+			buttonType: "button",
+			config: {
+				isFull: true,
+				title: "Save",
+			},
+		},
+		submit: {
+			buttonType: "button",
+			config: {
+				isFull: false,
+				title: "Log Out",
+			},
+		},
+	};
+
 	const avatarAdmin = (
 		<AvatarAdmin avatarTitle="donald trump" avatarImg={trumpAvatar} />
 	);
@@ -80,7 +96,7 @@ export default function Profile() {
 				sectionHeader="Change Password"
 				sectionData={transformToArr(changePasswordFormData)}
 			/>
-			{/* ButtonList */}
+			<ButtonListWrapper buttonData={transformToArr(buttonData)} />
 		</div>
 	);
 }

@@ -59,7 +59,7 @@ export default function Register() {
 			buttonType: "button",
 			config: {
 				isFull: false,
-				title: "back",
+				title: "Back",
 			},
 		},
 		submit: {
