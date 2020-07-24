@@ -9,8 +9,15 @@ export default function FormWrapper({
 	formData = [],
 	buttonData = [],
 }) {
+	// Validate form
+	const validateFormCell = (input = "", type = "") => {
+		console.log({ input, type });
+		return "test";
+	};
+
 	const inputList = formData.map((cell) => (
 		<FormCell
+			validateHandler={validateFormCell}
 			customStyle={cell.customStyle}
 			pageType={cell.pageType}
 			key={cell.id}

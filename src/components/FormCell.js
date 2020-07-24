@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import eyeIcon from "../assets/img/eye_icon.svg";
 
 export default function FormCell({
+	validateHandler = () => {},
 	pageType = "guess",
 	inputType = "text",
 	inputLabel = "default",
@@ -11,11 +12,28 @@ export default function FormCell({
 	customStyle = "",
 }) {
 	const [reveal, setReveal] = useState(false);
+	const [inputValue, setInputValue] = useState("");
+	const [errMsg, setErrMsg] = useState("");
 
 	const onRevealHandler = () => {
 		setReveal(!reveal);
 	};
 
+	const onChangeInputHandler = (value) => {
+		setInputValue(value);
+	};
+
+	// Start validate when user stop typing 500ms
+	useEffect(() => {
+		const validateTimeout = setTimeout(() => {
+			setErrMsg(validateHandler(inputValue, inputType));
+		}, 500);
+		return () => {
+			clearTimeout(validateTimeout);
+		};
+	}, [inputValue, inputType, validateHandler]);
+
+	let errMsgToggle = errMsg.length ? "d-block" : "d-none";
 	let inputStyle = "form-control";
 	let inputEyeIcon = null;
 
@@ -41,7 +59,9 @@ export default function FormCell({
 
 	return (
 		<>
-			<div className={`Form-cell-${pageType} form-group col-12 ${customStyle}`}>
+			<div
+				className={`Form-cell Form-cell-${pageType} form-group col-12 ${customStyle}`}
+			>
 				<label>{inputLabel}</label>
 				<div className="input-group flex-nowrap">
 					{pageType === "guess" && formCellGuessIconLeft}
@@ -49,15 +69,19 @@ export default function FormCell({
 						className={inputStyle}
 						type={reveal ? "text" : inputType}
 						placeholder={inputPlaceholder}
+						onChange={(event) => onChangeInputHandler(event.target.value)}
+						value={inputValue}
 					/>
 					{inputEyeIcon}
 				</div>
+				<span className={`text-center ${errMsgToggle}`}>i'm error msg</span>
 			</div>
 		</>
 	);
 }
 
 FormCell.propTypes = {
+	validateHandler: PropTypes.func,
 	pageType: PropTypes.oneOf(["guess", "admin"]),
 	inputType: PropTypes.oneOf(["email", "password", "text", "tel"]),
 	inputLabel: PropTypes.string,
