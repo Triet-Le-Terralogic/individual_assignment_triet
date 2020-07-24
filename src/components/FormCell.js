@@ -16,19 +16,7 @@ export default function FormCell({
 		setReveal(!reveal);
 	};
 
-	let dynamicEyeIcon = "";
-	switch (pageType) {
-		case "guess":
-			dynamicEyeIcon = "guess";
-			break;
-		case "admin":
-			dynamicEyeIcon = "admin";
-			break;
-		default:
-			dynamicEyeIcon = "";
-	}
-
-	let inputStyle = inputType === "file" ? "form-control-file" : "form-control";
+	let inputStyle = "form-control";
 	let inputEyeIcon = null;
 
 	if (inputType === "password" || (inputType === "text" && reveal)) {
@@ -37,7 +25,7 @@ export default function FormCell({
 
 		inputEyeIcon = (
 			<div
-				className={`Form-cell-${dynamicEyeIcon}__icon-right input-group-prepend`}
+				className={`Form-cell-${pageType}__icon-right input-group-prepend`}
 				onClick={() => onRevealHandler()}
 			>
 				<img src={eyeIcon} alt="Eye icon" />
@@ -45,48 +33,33 @@ export default function FormCell({
 		);
 	}
 
-	const formCellGuess = (
-		<div className={`Form-cell-guess form-group col-12 ${customStyle}`}>
-			<label>{inputLabel}</label>
-			<div className="input-group flex-nowrap">
-				<div className="Form-cell-guess__icon-left input-group-prepend">
-					<img src={inputIcon} alt={`${inputLabel}'s icon`} />
-				</div>
-				<input
-					className={inputStyle}
-					type={reveal ? "text" : inputType}
-					placeholder={inputPlaceholder}
-				/>
-				{inputEyeIcon}
-			</div>
-		</div>
-	);
-
-	const formCellAdmin = (
-		<div className={`Form-cell-admin form-group col-12 ${customStyle}`}>
-			<label>{inputLabel}</label>
-			<div className="input-group flex-nowrap">
-				<input
-					className={inputStyle}
-					type={reveal ? "text" : inputType}
-					placeholder={inputPlaceholder}
-				/>
-				{inputEyeIcon}
-			</div>
+	const formCellGuessIconLeft = (
+		<div className="Form-cell-guess__icon-left input-group-prepend">
+			<img src={inputIcon} alt={`${inputLabel}'s icon`} />
 		</div>
 	);
 
 	return (
 		<>
-			{pageType === "guess" && formCellGuess}
-			{pageType === "admin" && formCellAdmin}
+			<div className={`Form-cell-${pageType} form-group col-12 ${customStyle}`}>
+				<label>{inputLabel}</label>
+				<div className="input-group flex-nowrap">
+					{pageType === "guess" && formCellGuessIconLeft}
+					<input
+						className={inputStyle}
+						type={reveal ? "text" : inputType}
+						placeholder={inputPlaceholder}
+					/>
+					{inputEyeIcon}
+				</div>
+			</div>
 		</>
 	);
 }
 
 FormCell.propTypes = {
 	pageType: PropTypes.oneOf(["guess", "admin"]),
-	inputType: PropTypes.oneOf(["email", "password", "text", "tel", "file"]),
+	inputType: PropTypes.oneOf(["email", "password", "text", "tel"]),
 	inputLabel: PropTypes.string,
 	inputPlaceholder: PropTypes.string,
 	inputIcon: PropTypes.string, // In fact, inputIcon is a url string!
