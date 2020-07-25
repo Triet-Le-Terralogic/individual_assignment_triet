@@ -1,15 +1,9 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import FormCell from "./FormCell";
-import ButtonListWrapper from "./ButtonListWrapper";
 import { initStateCreator } from "../helper";
 
-export default function FormWrapper({
-  pageType = "guess",
-  formTitle = "",
-  formData = [],
-  buttonData = [],
-}) {
+export default function FormWrapper({ formTitle = "", formData = [] }) {
   // Create dynamic initState
   const initialState = initStateCreator(formData);
   const [formInputstate, setFormInputState] = useState(initialState);
@@ -50,14 +44,11 @@ export default function FormWrapper({
       <div className="container p-0">
         <div className="row">{inputList}</div>
       </div>
-      <ButtonListWrapper buttonData={buttonData} pageType={pageType} />
     </div>
   );
 }
 
 FormWrapper.propTypes = {
-  pageType: PropTypes.oneOf(["guess", "admin"]),
   formTitle: PropTypes.string,
   formData: PropTypes.array.isRequired,
-  buttonData: PropTypes.array,
 };

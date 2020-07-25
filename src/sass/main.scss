@@ -5,46 +5,60 @@
 
 // Global style
 body {
-	margin: 0;
-	font-family: "Proxima", BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-		"Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-		sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  font-family: "Proxima", BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-		monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
 }
 
 @media only screen and (max-width: map-get($grid-breakpoints, "lg" )) {
-	.Form-wrapper {
-		width: 60%;
-	}
+  .Form-wrapper {
+    width: 60%;
+  }
 
-	.Buton {
-		&-admin {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-		}
-	}
+  .Button {
+    &-admin {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &-list-wrapper-guess {
+      width: 60%;
+    }
+  }
 }
 
 @media only screen and (max-width: map-get($grid-breakpoints, "md" )) {
-	.Form-wrapper {
-		width: 70%;
-	}
-	.Button {
-		&-guess {
-			width: 120px;
-		}
-	}
+  .Form-wrapper {
+    width: 70%;
+  }
+  .Button {
+    &-guess {
+      width: 120px;
+    }
+
+    &-list-wrapper-guess {
+      width: 70%;
+    }
+  }
 }
 
 @media only screen and (max-width: map-get($grid-breakpoints, "sm" )) {
-	.Form-wrapper {
-		width: 80%;
-	}
+  .Form-wrapper {
+    width: 80%;
+  }
+
+  .Button {
+    &-list-wrapper-guess {
+      width: 80%;
+    }
+  }
 }

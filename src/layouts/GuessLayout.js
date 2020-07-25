@@ -6,7 +6,7 @@ export default function GuessLayout(props) {
     <div className="Guess-layout container">
       <div className="row">
         <div className="col-lg-5 mb-5 mb-lg-0">{props.children}</div>
-        <div className="Guess-layout__bitmap offset-lg-1 col-lg-6">
+        <div className="Guess-layout__bitmap offset-xl-1 col-xl-5 col-lg-6 d-none d-lg-block">
           <img src={bitmap} alt="bitmap" />
         </div>
       </div>

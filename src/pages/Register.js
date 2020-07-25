@@ -1,5 +1,6 @@
 import React from "react";
 import FormWrapper from "../components/FormWrapper";
+import ButtonListWrapper from "../components/ButtonListWrapper";
 import Logo from "../components/Logo";
 import emaiIcon from "../assets/img/email_icon.svg";
 import keyIcon from "../assets/img/key_icon.svg";
@@ -80,10 +81,12 @@ export default function Register() {
         Start your personal photo experient
       </span>
       <FormWrapper
-        pageType="guess"
         formTitle="Register your account"
         formData={transformToArr(formData)}
+      />
+      <ButtonListWrapper
         buttonData={transformToArr(buttonData)}
+        pageType="guess"
       />
     </div>
   );
