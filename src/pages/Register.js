@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import FormWrapper from "../components/FormWrapper";
 import ButtonListWrapper from "../components/ButtonListWrapper";
 import Logo from "../components/Logo";
 import emaiIcon from "../assets/img/email_icon.svg";
 import keyIcon from "../assets/img/key_icon.svg";
-import { transformToArr } from "../helper";
+import { transformToArr, initStateCreator } from "../helper";
 
 export default function Register() {
   const formData = {
@@ -74,20 +74,41 @@ export default function Register() {
     },
   };
 
+  // Create dynamic initState
+  const initialState = initStateCreator(transformToArr(formData));
+  const [formInputstate, setFormInputState] = useState(initialState);
+
+  // set form's input state
+  const onUserInputHandler = (val, name) => {
+    setFormInputState((prevState) => ({
+      ...prevState,
+      [name]: val,
+    }));
+  };
+
+  const onSubmitFormHandler = (e) => {
+    e.preventDefault();
+    console.log("Submit form!", formInputstate);
+  };
+
   return (
     <div className="Register container text-center text-lg-left">
       <Logo />
       <span className="Register__slogan">
         Start your personal photo experient
       </span>
-      <FormWrapper
-        formTitle="Register your account"
-        formData={transformToArr(formData)}
-      />
-      <ButtonListWrapper
-        buttonData={transformToArr(buttonData)}
-        pageType="guess"
-      />
+      <form onSubmit={onSubmitFormHandler}>
+        <FormWrapper
+          onUserInputHandler={onUserInputHandler}
+          formTitle="Register your account"
+          formData={transformToArr(formData)}
+          formInputstate={formInputstate}
+        />
+        <ButtonListWrapper
+          buttonData={transformToArr(buttonData)}
+          pageType="guess"
+        />
+      </form>
     </div>
   );
 }

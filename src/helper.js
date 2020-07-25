@@ -66,6 +66,7 @@ const validatePhone = (phone) => {
 
 // Regex name validator (accept -, not _)
 const validateName = (name) => {
-  const regex = /^(?!-)[a-zA-Z-]*[a-zA-Z]$/;
+  const regex = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
+
   return regex.test(name);
 };

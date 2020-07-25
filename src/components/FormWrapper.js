@@ -1,31 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import FormCell from "./FormCell";
-import { initStateCreator } from "../helper";
 
-export default function FormWrapper({ formTitle = "", formData = [] }) {
-  // Create dynamic initState
-  const initialState = initStateCreator(formData);
-  const [formInputstate, setFormInputState] = useState(initialState);
-
-  // set form's input state
-  const onUserInputHandler = (val, name) => {
-    setFormInputState((prevState) => ({
-      ...prevState,
-      [name]: val,
-    }));
-  };
-
-  // Validate form
-  const validateFormCell = (input = "", type = "") => {
-    console.log({ input, type });
-    return "test";
-  };
-
+export default function FormWrapper({
+  onUserInputHandler = () => {},
+  formTitle = "",
+  formData = [],
+  formInputstate = {},
+}) {
   const inputList = formData.map((cell) => (
     <FormCell
       key={cell.id}
-      validateHandler={validateFormCell}
       onUserInputHandler={onUserInputHandler}
       customStyle={cell.customStyle}
       pageType={cell.pageType}
@@ -49,6 +34,7 @@ export default function FormWrapper({ formTitle = "", formData = [] }) {
 }
 
 FormWrapper.propTypes = {
+  onUserInputHandler: PropTypes.func,
   formTitle: PropTypes.string,
   formData: PropTypes.array.isRequired,
 };
