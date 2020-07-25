@@ -1,47 +1,63 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import FormCell from "./FormCell";
 import ButtonListWrapper from "./ButtonListWrapper";
+import { initStateCreator } from "../helper";
 
 export default function FormWrapper({
-	pageType = "guess",
-	formTitle = "",
-	formData = [],
-	buttonData = [],
+  pageType = "guess",
+  formTitle = "",
+  formData = [],
+  buttonData = [],
 }) {
-	// Validate form
-	const validateFormCell = (input = "", type = "") => {
-		console.log({ input, type });
-		return "test";
-	};
+  // Create dynamic initState
+  const initialState = initStateCreator(formData);
+  const [formInputstate, setFormInputState] = useState(initialState);
 
-	const inputList = formData.map((cell) => (
-		<FormCell
-			validateHandler={validateFormCell}
-			customStyle={cell.customStyle}
-			pageType={cell.pageType}
-			key={cell.id}
-			inputType={cell.config.type}
-			inputLabel={cell.config.label}
-			inputPlaceholder={cell.config.placeholder}
-			inputIcon={cell.config.icon}
-		/>
-	));
+  // set form's input state
+  const onUserInputHandler = (val, name) => {
+    setFormInputState((prevState) => ({
+      ...prevState,
+      [name]: val,
+    }));
+  };
 
-	return (
-		<div className="Form-wrapper mx-auto">
-			<h3 className="Form-wrapper__title">{formTitle}</h3>
-			<div className="container p-0">
-				<div className="row">{inputList}</div>
-			</div>
-			<ButtonListWrapper buttonData={buttonData} pageType={pageType} />
-		</div>
-	);
+  // Validate form
+  const validateFormCell = (input = "", type = "") => {
+    console.log({ input, type });
+    return "test";
+  };
+
+  const inputList = formData.map((cell) => (
+    <FormCell
+      key={cell.id}
+      validateHandler={validateFormCell}
+      onUserInputHandler={onUserInputHandler}
+      customStyle={cell.customStyle}
+      pageType={cell.pageType}
+      inputID={cell.id}
+      inputValue={formInputstate[cell.id]}
+      inputType={cell.config.type}
+      inputLabel={cell.config.label}
+      inputPlaceholder={cell.config.placeholder}
+      inputIcon={cell.config.icon}
+    />
+  ));
+
+  return (
+    <div className="Form-wrapper mx-auto">
+      <h3 className="Form-wrapper__title">{formTitle}</h3>
+      <div className="container p-0">
+        <div className="row">{inputList}</div>
+      </div>
+      <ButtonListWrapper buttonData={buttonData} pageType={pageType} />
+    </div>
+  );
 }
 
 FormWrapper.propTypes = {
-	pageType: PropTypes.oneOf(["guess", "admin"]),
-	formTitle: PropTypes.string,
-	formData: PropTypes.array.isRequired,
-	buttonData: PropTypes.array,
+  pageType: PropTypes.oneOf(["guess", "admin"]),
+  formTitle: PropTypes.string,
+  formData: PropTypes.array.isRequired,
+  buttonData: PropTypes.array,
 };
