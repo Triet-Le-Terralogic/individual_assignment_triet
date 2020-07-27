@@ -2,13 +2,24 @@ import React, { useState } from "react";
 import AvatarAdmin from "../components/AvatarAdmin";
 import AdminSection from "../components/AdminSection";
 import trumpAvatar from "../assets/img/test_avatar.jpg";
-import { transformToArr, initStateCreator } from "../helper";
+import {
+	transformToArr,
+	initStateCreator,
+	changePasswordValidator,
+} from "../helper";
 import ButtonListWrapper from "../components/ButtonListWrapper";
 
 export default function Profile() {
-	const onSubmitFormHandler = (e) => {
-		e.preventDefault();
-		console.log("Submit form!", formChangePasswordState);
+	const onSubmitFormHandler = () => {
+		if (changePasswordValidator(formChangePasswordState)) {
+			console.log("Submit form!", formChangePasswordState);
+		}
+		// else popup invalid form
+		console.log("invalid form");
+	};
+
+	const onLogoutHandler = () => {
+		console.log("Logout!");
 	};
 
 	const infoFormData = {
@@ -87,7 +98,7 @@ export default function Profile() {
 			config: {
 				isFull: false,
 				title: "Log Out",
-				onClickHandler: () => {},
+				onClickHandler: onLogoutHandler,
 			},
 		},
 	};

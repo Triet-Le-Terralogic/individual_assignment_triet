@@ -6,15 +6,15 @@ import GuessLayout from "./layouts/GuessLayout";
 import Register from "./pages/Register";
 
 function App() {
-  return (
-    <GuessLayout>
-      {/* <Login /> */}
-      <Register />
-    </GuessLayout>
-    // <AdminLayout>
-    // 	<Profile />
-    // </AdminLayout>
-  );
+	return (
+		<GuessLayout>
+			{/* <Login /> */}
+			<Register />
+		</GuessLayout>
+		// <AdminLayout>
+		// 	<Profile />
+		// </AdminLayout>
+	);
 }
 
 export default App;
