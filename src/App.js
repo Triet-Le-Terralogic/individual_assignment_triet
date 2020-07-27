@@ -9,19 +9,27 @@ import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import ErrorPage from "./components/ErrorPage";
 
-function App({ isAuth }) {
+function App(props) {
+	const { isAuth } = props;
 	return (
 		<Switch>
-			<PublicRoute authenticated={isAuth} path="/login" component={Login} />
+			<PublicRoute
+				authenticated={isAuth}
+				path="/login"
+				component={Login}
+				{...props}
+			/>
 			<PublicRoute
 				authenticated={isAuth}
 				path="/register"
 				component={Register}
+				{...props}
 			/>
 			<PrivateRoute
 				authenticated={isAuth}
 				path="/profile"
 				component={Profile}
+				{...props}
 			/>
 			<Redirect exact from="/" to="login" />
 			<Route component={ErrorPage} />
@@ -41,6 +49,7 @@ const mapDispatchToProps = (dispatch) => {
 			dispatch(actionCreators.postLoginData(loginData)),
 		onRegisterHandler: (registerData) =>
 			dispatch(actionCreators.postRegisterData(registerData)),
+		onLogoutHandler: () => dispatch(actionCreators.onLogoutHandler()),
 	};
 };
 

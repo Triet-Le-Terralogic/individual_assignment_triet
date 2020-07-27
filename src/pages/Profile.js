@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import AdminLayout from "../layouts/AdminLayout";
 import AvatarAdmin from "../components/AvatarAdmin";
 import AdminSection from "../components/AdminSection";
@@ -10,17 +11,13 @@ import {
 } from "../helper";
 import ButtonListWrapper from "../components/ButtonListWrapper";
 
-export default function Profile() {
+export default function Profile({ onLogoutHandler = () => {} }) {
 	const onSubmitFormHandler = () => {
 		if (changePasswordValidator(formChangePasswordState)) {
 			console.log("Submit form!", formChangePasswordState);
 		}
 		// else popup invalid form
 		console.log("invalid form");
-	};
-
-	const onLogoutHandler = () => {
-		console.log("Logout!");
 	};
 
 	const infoFormData = {
@@ -143,3 +140,7 @@ export default function Profile() {
 		</AdminLayout>
 	);
 }
+
+Profile.propType = {
+	onLogoutHandler: PropTypes.func,
+};

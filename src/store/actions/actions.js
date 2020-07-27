@@ -20,3 +20,21 @@ export const onRegisterSuccess = (data) => {
 		},
 	};
 };
+export const onLogoutHandler = (data) => {
+	return {
+		type: actionTypes.LOGOUT,
+		payload: {
+			overall: {
+				isAuth: false,
+				serverMsg: "",
+				token: "",
+			},
+			userInfo: {
+				email: "",
+				name: "",
+				phone: "",
+				id: "",
+			},
+		},
+	};
+};

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 
 import GuessLayout from "../layouts/GuessLayout";
 import FormWrapper from "../components/FormWrapper";
@@ -9,7 +10,7 @@ import emaiIcon from "../assets/img/email_icon.svg";
 import keyIcon from "../assets/img/key_icon.svg";
 import { transformToArr, initStateCreator, loginValidator } from "../helper";
 
-const Login = ({ onLoginHandler }) => {
+const Login = ({ onLoginHandler = () => {}, history = {} }) => {
 	const onSubmitFormHandler = () => {
 		if (loginValidator(formInputstate)) {
 			onLoginHandler(formInputstate);
@@ -20,6 +21,9 @@ const Login = ({ onLoginHandler }) => {
 	};
 
 	const onChangeToResigterPage = () => {
+		history.push({
+			pathname: "/register",
+		});
 		console.log("Change route");
 	};
 
@@ -95,6 +99,11 @@ const Login = ({ onLoginHandler }) => {
 			</div>
 		</GuessLayout>
 	);
+};
+
+Login.propTypes = {
+	onLoginHandler: PropTypes.func,
+	history: PropTypes.object,
 };
 
 export default Login;

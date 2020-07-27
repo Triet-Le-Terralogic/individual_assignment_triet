@@ -1,2 +1,2 @@
 export { postLoginData, postRegisterData } from "./asyncActions";
-export { onLoginSuccess } from "./actions";
+export { onLoginSuccess, onRegisterSuccess, onLogoutHandler } from "./actions";

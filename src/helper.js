@@ -83,9 +83,10 @@ export const registerValidator = (submitData) => {
 	if (!validateName(name) && isValid === true) {
 		isValid = false;
 	}
-	if (!validateName(phone) && isValid === true) {
+	if (!validatePhone(phone) && isValid === true) {
 		isValid = false;
 	}
+	console.log(isValid);
 	return isValid;
 };
 

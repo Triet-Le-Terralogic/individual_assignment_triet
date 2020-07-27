@@ -34,10 +34,19 @@ const reducer = (state = initialState, action) => {
 				serverMsg: action.payload.msg,
 			};
 
+		case actionTypes.LOGOUT:
+			return {
+				...state,
+				...action.payload.overall,
+				userInfo: {
+					...state.userInfo,
+					...action.payload.userInfo,
+				},
+			};
+
 		default:
-			break;
+			return state;
 	}
-	return state;
 };
 
 export default reducer;

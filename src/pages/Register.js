@@ -9,17 +9,20 @@ import emaiIcon from "../assets/img/email_icon.svg";
 import keyIcon from "../assets/img/key_icon.svg";
 import { transformToArr, initStateCreator, registerValidator } from "../helper";
 
-export default function Register({ onRegisterHandler }) {
+export default function Register({ onRegisterHandler, history }) {
 	const onSubmitFormHandler = () => {
 		if (registerValidator(formInputstate)) {
 			onRegisterHandler(formInputstate);
+		} else {
+			// Else popup invalid form
+			console.log("invalid form");
 		}
-		// Else popup invalid form
-		console.log("invalid form");
 	};
 
 	const onChangeToLoginPage = () => {
-		console.log("change to Login");
+		history.push({
+			pathname: "/login",
+		});
 	};
 	const formData = {
 		email: {
