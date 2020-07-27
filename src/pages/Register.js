@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import {} from "react-redux";
+
 import GuessLayout from "../layouts/GuessLayout";
 import FormWrapper from "../components/FormWrapper";
 import ButtonListWrapper from "../components/ButtonListWrapper";
@@ -7,10 +9,10 @@ import emaiIcon from "../assets/img/email_icon.svg";
 import keyIcon from "../assets/img/key_icon.svg";
 import { transformToArr, initStateCreator, registerValidator } from "../helper";
 
-export default function Register() {
+export default function Register({ onRegisterHandler }) {
 	const onSubmitFormHandler = () => {
 		if (registerValidator(formInputstate)) {
-			console.log("Submit form!", formInputstate);
+			onRegisterHandler(formInputstate);
 		}
 		// Else popup invalid form
 		console.log("invalid form");

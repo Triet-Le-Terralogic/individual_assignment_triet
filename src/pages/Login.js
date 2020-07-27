@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { connect } from "react-redux";
 
 import GuessLayout from "../layouts/GuessLayout";
 import FormWrapper from "../components/FormWrapper";
@@ -9,15 +8,11 @@ import Logo from "../components/Logo";
 import emaiIcon from "../assets/img/email_icon.svg";
 import keyIcon from "../assets/img/key_icon.svg";
 import { transformToArr, initStateCreator, loginValidator } from "../helper";
-import * as actionCreators from "../store/actions";
 
-const Login = ({ onLoginHandler, history }) => {
+const Login = ({ onLoginHandler }) => {
 	const onSubmitFormHandler = () => {
 		if (loginValidator(formInputstate)) {
 			onLoginHandler(formInputstate);
-			history.replace({
-				pathname: "/profile",
-			});
 		} else {
 			// else popup invalid form
 			console.log("invalid form");
@@ -102,10 +97,4 @@ const Login = ({ onLoginHandler, history }) => {
 	);
 };
 
-const mapDispatchToProps = (dispatch) => {
-	return {
-		onLoginHandler: (loginData) =>
-			dispatch(actionCreators.postLoginData(loginData)),
-	};
-};
-export default connect(null, mapDispatchToProps)(Login);
+export default Login;

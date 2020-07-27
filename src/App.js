@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
+import * as actionCreators from "./store/actions";
 
 import { PublicRoute, PrivateRoute } from "./hoc";
 import Login from "./pages/Login";
@@ -34,4 +35,13 @@ const mapStateToProps = (state) => {
 	};
 };
 
-export default connect(mapStateToProps, null)(App);
+const mapDispatchToProps = (dispatch) => {
+	return {
+		onLoginHandler: (loginData) =>
+			dispatch(actionCreators.postLoginData(loginData)),
+		onRegisterHandler: (registerData) =>
+			dispatch(actionCreators.postRegisterData(registerData)),
+	};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
