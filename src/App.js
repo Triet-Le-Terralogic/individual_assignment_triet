@@ -1,19 +1,20 @@
 import React from "react";
-import GuessLayout from "./layouts/GuessLayout";
-// import AdminLayout from "./layouts/AdminLayout";
-// import Profile from "./pages/Profile";
-// import Login from "./pages/Login";
+import { Route, Switch, Redirect } from "react-router-dom";
+
+import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Profile from "./pages/Profile";
 
 function App() {
 	return (
-		<GuessLayout>
-			{/* <Login /> */}
-			<Register />
-		</GuessLayout>
-		// <AdminLayout>
-		// 	<Profile />
-		// </AdminLayout>
+		<div>
+			<Switch>
+				<Route path="/login" component={Login} />
+				<Route path="/register" component={Register} />
+				<Route path="/profile" component={Profile} />
+				<Redirect from="/" to="login" />
+			</Switch>
+		</div>
 	);
 }
 

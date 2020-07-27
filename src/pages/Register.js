@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import GuessLayout from "../layouts/GuessLayout";
 import FormWrapper from "../components/FormWrapper";
 import ButtonListWrapper from "../components/ButtonListWrapper";
 import Logo from "../components/Logo";
@@ -100,23 +101,25 @@ export default function Register() {
 	};
 
 	return (
-		<div className="Register container text-center text-lg-left">
-			<Logo />
-			<span className="Register__slogan">
-				Start your personal photo experient
-			</span>
-			<form onSubmit={onSubmitFormHandler}>
-				<FormWrapper
-					onUserInputHandler={onUserInputHandler}
-					formTitle="Register your account"
-					formData={transformToArr(formData)}
-					formInputstate={formInputstate}
-				/>
-				<ButtonListWrapper
-					buttonData={transformToArr(buttonData)}
-					pageType="guess"
-				/>
-			</form>
-		</div>
+		<GuessLayout>
+			<div className="Register container text-center text-lg-left">
+				<Logo />
+				<span className="Register__slogan">
+					Start your personal photo experient
+				</span>
+				<form onSubmit={onSubmitFormHandler}>
+					<FormWrapper
+						onUserInputHandler={onUserInputHandler}
+						formTitle="Register your account"
+						formData={transformToArr(formData)}
+						formInputstate={formInputstate}
+					/>
+					<ButtonListWrapper
+						buttonData={transformToArr(buttonData)}
+						pageType="guess"
+					/>
+				</form>
+			</div>
+		</GuessLayout>
 	);
 }

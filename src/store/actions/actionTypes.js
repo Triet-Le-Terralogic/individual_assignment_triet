@@ -1,3 +1,4 @@
 export const actionTypes = {
-	AUTH_LOGIN: "AUTH_LOGIN",
+	STORE_USER: "STORE_USER",
+	STORE_TOKEN: "STORE_TOKEN",
 };

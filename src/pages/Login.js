@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import GuessLayout from "../layouts/GuessLayout";
 import FormWrapper from "../components/FormWrapper";
 import ButtonListWrapper from "../components/ButtonListWrapper";
 import CheckBox from "../components/CheckBox";
@@ -72,22 +73,24 @@ export default function Login() {
 	};
 
 	return (
-		<div className="Login container text-center text-lg-left">
-			<Logo />
-			<span className="Login__slogan">
-				Start your personal photo experience
-			</span>
-			<FormWrapper
-				onUserInputHandler={onUserInputHandler}
-				formTitle="Login your account"
-				formData={transformToArr(formData)}
-				formInputstate={formInputstate}
-			/>
-			<ButtonListWrapper
-				buttonData={transformToArr(buttonData)}
-				pageType="guess"
-			/>
-			<CheckBox checkBoxTitle="Remember password" />
-		</div>
+		<GuessLayout>
+			<div className="Login container text-center text-lg-left">
+				<Logo />
+				<span className="Login__slogan">
+					Start your personal photo experience
+				</span>
+				<FormWrapper
+					onUserInputHandler={onUserInputHandler}
+					formTitle="Login your account"
+					formData={transformToArr(formData)}
+					formInputstate={formInputstate}
+				/>
+				<ButtonListWrapper
+					buttonData={transformToArr(buttonData)}
+					pageType="guess"
+				/>
+				<CheckBox checkBoxTitle="Remember password" />
+			</div>
+		</GuessLayout>
 	);
 }

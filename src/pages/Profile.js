@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import AdminLayout from "../layouts/AdminLayout";
 import AvatarAdmin from "../components/AvatarAdmin";
 import AdminSection from "../components/AdminSection";
 import trumpAvatar from "../assets/img/test_avatar.jpg";
@@ -121,22 +122,24 @@ export default function Profile() {
 		<AvatarAdmin avatarTitle="donald trump" avatarImg={trumpAvatar} />
 	);
 	return (
-		<div className="Profile container text-center text-lg-left">
-			<AdminSection
-				sectionHeader={avatarAdmin}
-				sectionData={transformToArr(infoFormData)}
-				formInputstate={{}}
-			/>
-			<AdminSection
-				onUserInputHandler={onUserInputHandler}
-				formInputstate={formChangePasswordState}
-				sectionHeader="Change Password"
-				sectionData={transformToArr(changePasswordFormData)}
-			/>
-			<ButtonListWrapper
-				buttonData={transformToArr(buttonData)}
-				pageType="admin"
-			/>
-		</div>
+		<AdminLayout>
+			<div className="Profile container text-center text-lg-left">
+				<AdminSection
+					sectionHeader={avatarAdmin}
+					sectionData={transformToArr(infoFormData)}
+					formInputstate={{}}
+				/>
+				<AdminSection
+					onUserInputHandler={onUserInputHandler}
+					formInputstate={formChangePasswordState}
+					sectionHeader="Change Password"
+					sectionData={transformToArr(changePasswordFormData)}
+				/>
+				<ButtonListWrapper
+					buttonData={transformToArr(buttonData)}
+					pageType="admin"
+				/>
+			</div>
+		</AdminLayout>
 	);
 }
