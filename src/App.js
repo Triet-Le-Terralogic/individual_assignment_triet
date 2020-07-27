@@ -40,6 +40,8 @@ function App(props) {
 const mapStateToProps = (state) => {
 	return {
 		isAuth: state.isAuth,
+		userInfo: state.userInfo,
+		token: state.token,
 	};
 };
 
@@ -50,6 +52,8 @@ const mapDispatchToProps = (dispatch) => {
 		onRegisterHandler: (registerData) =>
 			dispatch(actionCreators.postRegisterData(registerData)),
 		onLogoutHandler: () => dispatch(actionCreators.onLogoutHandler()),
+		onChangePasswordHandler: (changePassData) =>
+			dispatch(actionCreators.changePassword(changePassData)),
 	};
 };
 

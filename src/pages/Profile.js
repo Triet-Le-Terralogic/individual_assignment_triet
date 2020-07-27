@@ -11,17 +11,27 @@ import {
 } from "../helper";
 import ButtonListWrapper from "../components/ButtonListWrapper";
 
-export default function Profile({ onLogoutHandler = () => {} }) {
+export default function Profile({
+	onLogoutHandler = () => {},
+	onChangePasswordHandler = () => {},
+	userInfo = {},
+	token = "",
+}) {
 	const onSubmitFormHandler = () => {
 		if (changePasswordValidator(formChangePasswordState)) {
-			console.log("Submit form!", formChangePasswordState);
+			const changePassData = {
+				token: token,
+				passwordData: formChangePasswordState,
+			};
+			onChangePasswordHandler(changePassData);
+		} else {
+			// else popup invalid form
+			console.log("invalid form");
 		}
-		// else popup invalid form
-		console.log("invalid form");
 	};
 
 	const infoFormData = {
-		fullName: {
+		name: {
 			pageType: "admin",
 			customStyle: "col-lg-6 offset-reverse-6",
 			config: {
@@ -30,7 +40,7 @@ export default function Profile({ onLogoutHandler = () => {} }) {
 				placeholder: "Your full name",
 			},
 		},
-		password: {
+		email: {
 			pageType: "admin",
 			customStyle: "col-lg-6",
 			config: {
@@ -116,7 +126,7 @@ export default function Profile({ onLogoutHandler = () => {} }) {
 	};
 
 	const avatarAdmin = (
-		<AvatarAdmin avatarTitle="donald trump" avatarImg={trumpAvatar} />
+		<AvatarAdmin avatarTitle={userInfo.name} avatarImg={trumpAvatar} />
 	);
 	return (
 		<AdminLayout>
@@ -124,7 +134,7 @@ export default function Profile({ onLogoutHandler = () => {} }) {
 				<AdminSection
 					sectionHeader={avatarAdmin}
 					sectionData={transformToArr(infoFormData)}
-					formInputstate={{}}
+					formInputstate={userInfo}
 				/>
 				<AdminSection
 					onUserInputHandler={onUserInputHandler}
@@ -143,4 +153,7 @@ export default function Profile({ onLogoutHandler = () => {} }) {
 
 Profile.propType = {
 	onLogoutHandler: PropTypes.func,
+	onChangePasswordHandler: PropTypes.func,
+	userInfo: PropTypes.object,
+	token: PropTypes.string,
 };

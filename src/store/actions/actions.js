@@ -20,6 +20,7 @@ export const onRegisterSuccess = (data) => {
 		},
 	};
 };
+
 export const onLogoutHandler = (data) => {
 	return {
 		type: actionTypes.LOGOUT,
@@ -35,6 +36,15 @@ export const onLogoutHandler = (data) => {
 				phone: "",
 				id: "",
 			},
+		},
+	};
+};
+
+export const onChangePassSuccess = (data) => {
+	return {
+		type: actionTypes.CHANGE_PASS,
+		payload: {
+			msg: data.msg,
 		},
 	};
 };

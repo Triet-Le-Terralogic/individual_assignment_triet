@@ -44,6 +44,12 @@ const reducer = (state = initialState, action) => {
 				},
 			};
 
+		case actionTypes.CHANGE_PASS:
+			return {
+				...state,
+				serverMsg: action.payload.msg,
+			};
+
 		default:
 			return state;
 	}

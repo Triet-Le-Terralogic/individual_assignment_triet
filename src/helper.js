@@ -90,18 +90,16 @@ export const registerValidator = (submitData) => {
 	return isValid;
 };
 
-export const changePasswordValidator = (submitData, curPassword) => {
-	const { currentPassword, newPassword, confirmPassword } = submitData;
+export const changePasswordValidator = (submitData) => {
+	const { newPassword, confirmPassword } = submitData;
 	let isValid = true;
-	if (currentPassword !== curPassword && isValid === true) {
-		isValid = false;
-	}
 	if (!validatePassword(newPassword) && isValid === true) {
 		isValid = false;
 	}
 	if (newPassword !== confirmPassword && isValid === true) {
 		isValid = false;
 	}
+	return isValid;
 };
 
 const validatePassword = (password) => {
