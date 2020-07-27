@@ -13,7 +13,7 @@ export const PublicRoute = ({
 				authenticated === false ? (
 					<Component {...props} />
 				) : (
-					<Redirect to="/todos" />
+					<Redirect to="/profile" />
 				)
 			}
 		/>

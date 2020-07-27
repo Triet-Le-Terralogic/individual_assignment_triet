@@ -16,6 +16,7 @@ const reducer = (state = initialState, action) => {
 		case actionTypes.LOGIN_SUCCESS:
 			return {
 				...state,
+				isAuth: true,
 				serverMsg: action.payload.msg,
 				token: action.payload.token,
 				userInfo: {
@@ -25,6 +26,12 @@ const reducer = (state = initialState, action) => {
 					phone: action.payload.userInfo.phone,
 					id: action.payload.userInfo.id,
 				},
+			};
+
+		case actionTypes.REGISTER_SUCCESS:
+			return {
+				...state,
+				serverMsg: action.payload.msg,
 			};
 
 		default:

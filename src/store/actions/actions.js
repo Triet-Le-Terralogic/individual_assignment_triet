@@ -11,3 +11,12 @@ export const onLoginSuccess = (data) => {
 		},
 	};
 };
+
+export const onRegisterSuccess = (data) => {
+	return {
+		type: actionTypes.REGISTER_SUCCESS,
+		payload: {
+			msg: data.msg,
+		},
+	};
+};

@@ -3,16 +3,19 @@ import * as actions from "./actions";
 
 export const postRegisterData = (registerData) => {
 	return async (dispatch) => {
-		const respData = await axios.request({
-			method: "POST",
-			url: "http://api.terralogic.ngrok.io/api/register",
-			data: {
-				...JSON.stringify(registerData),
-			},
-		});
+		try {
+			const respData = await axios.request({
+				method: "POST",
+				url: "http://api.terralogic.ngrok.io/api/register",
+				data: {
+					...JSON.stringify(registerData),
+				},
+			});
 
-		console.log(respData);
-		// await dispatch(actions.storeUserInfo(respData));
+			dispatch(actions.onRegisterSuccess(respData.data));
+		} catch (error) {
+			console.log(error);
+		}
 	};
 };
 
@@ -28,8 +31,6 @@ export const postLoginData = (loginData) => {
 				data: JSON.stringify(loginData),
 			});
 			dispatch(actions.onLoginSuccess(respData.data));
-
-			// decode token to store user info
 		} catch (error) {
 			console.log(error);
 		}

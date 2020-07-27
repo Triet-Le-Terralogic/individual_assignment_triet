@@ -11,10 +11,13 @@ import keyIcon from "../assets/img/key_icon.svg";
 import { transformToArr, initStateCreator, loginValidator } from "../helper";
 import * as actionCreators from "../store/actions";
 
-const Login = ({ onLoginHandler }) => {
+const Login = ({ onLoginHandler, history }) => {
 	const onSubmitFormHandler = () => {
 		if (loginValidator(formInputstate)) {
 			onLoginHandler(formInputstate);
+			history.replace({
+				pathname: "/profile",
+			});
 		} else {
 			// else popup invalid form
 			console.log("invalid form");
