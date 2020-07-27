@@ -1,21 +1,13 @@
 import { actionTypes } from "./actionTypes";
+import decoder from "jwt-decode";
 
-export const storeUserInfo = (respData) => {
+export const onLoginSuccess = (data) => {
 	return {
-		type: actionTypes.STORE_USER,
+		type: actionTypes.LOGIN_SUCCESS,
 		payload: {
-			userInfo: respData.data,
-			msg: respData.msg,
-		},
-	};
-};
-
-export const storeToken = (respData) => {
-	return {
-		type: actionTypes.STORE_USER,
-		payload: {
-			token: respData.token,
-			msg: respData.msg,
+			msg: data.msg,
+			token: data.token,
+			userInfo: decoder(data.token),
 		},
 	};
 };

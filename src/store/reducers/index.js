@@ -4,30 +4,27 @@ const initialState = {
 	isAuth: false,
 	serverMsg: "",
 	userInfo: {
-		email: "anonymous@terralogic.com",
-		name: "anonymous",
-		phone: "0123456789",
-		id: "-MDDFlkIKEg2siFgT96T",
+		email: "",
+		name: "",
+		phone: "",
+		id: "",
 	},
 	token: "",
 };
 const reducer = (state = initialState, action) => {
 	switch (action.type) {
-		case actionTypes.STORE_USER:
+		case actionTypes.LOGIN_SUCCESS:
 			return {
 				...state,
 				serverMsg: action.payload.msg,
+				token: action.payload.token,
 				userInfo: {
 					...state.userInfo,
-					...action.payload.userInfo,
+					email: action.payload.userInfo.email,
+					name: action.payload.userInfo.name,
+					phone: action.payload.userInfo.phone,
+					id: action.payload.userInfo.id,
 				},
-			};
-
-		case actionTypes.STORE_TOKEN:
-			return {
-				...state,
-				msg: action.payload.msg,
-				token: action.payload.token,
 			};
 
 		default:

@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
+
 import GuessLayout from "../layouts/GuessLayout";
 import FormWrapper from "../components/FormWrapper";
 import ButtonListWrapper from "../components/ButtonListWrapper";
@@ -7,14 +9,16 @@ import Logo from "../components/Logo";
 import emaiIcon from "../assets/img/email_icon.svg";
 import keyIcon from "../assets/img/key_icon.svg";
 import { transformToArr, initStateCreator, loginValidator } from "../helper";
+import * as actionCreators from "../store/actions";
 
-export default function Login() {
+const Login = ({ onLoginHandler }) => {
 	const onSubmitFormHandler = () => {
 		if (loginValidator(formInputstate)) {
-			console.log("Submit form!", formInputstate);
+			onLoginHandler(formInputstate);
+		} else {
+			// else popup invalid form
+			console.log("invalid form");
 		}
-		// else popup invalid form
-		console.log("invalid form");
 	};
 
 	const onChangeToResigterPage = () => {
@@ -93,4 +97,12 @@ export default function Login() {
 			</div>
 		</GuessLayout>
 	);
-}
+};
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		onLoginHandler: (loginData) =>
+			dispatch(actionCreators.postLoginData(loginData)),
+	};
+};
+export default connect(null, mapDispatchToProps)(Login);
