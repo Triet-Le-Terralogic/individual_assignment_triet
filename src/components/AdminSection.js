@@ -3,6 +3,8 @@ import FormWrapper from "./FormWrapper";
 import PropTypes from "prop-types";
 
 export default function AdminSection({
+	onUserInputHandler = () => {},
+	formInputstate = {},
 	sectionHeader = "default",
 	sectionData = [],
 }) {
@@ -14,13 +16,19 @@ export default function AdminSection({
 				{sectionHeader}
 			</div>
 			<div className="Admin-section__form-list">
-				<FormWrapper formData={sectionData} />
+				<FormWrapper
+					formData={sectionData}
+					onUserInputHandler={onUserInputHandler}
+					formInputstate={formInputstate}
+				/>
 			</div>
 		</div>
 	);
 }
 
 AdminSection.propTypes = {
+	onUserInputHandler: PropTypes.func,
+	formInputstate: PropTypes.object,
 	sectionHeader: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
 	sectionData: PropTypes.arrayOf(PropTypes.object),
 };

@@ -1,92 +1,95 @@
 // Form-cell
 .Form-cell {
-  &-guess {
-    label {
-      color: $gray-600;
-      font-weight: bold;
-      margin-left: 10px;
-      text-transform: capitalize;
-      text-align: left !important;
-    }
+	&-guess {
+		margin-bottom: 18px;
 
-    input {
-      padding: 12px;
-      border-left: none;
-      border-radius: 0 20rem 20rem 0;
-    }
+		label {
+			color: $gray-600;
+			font-weight: bold;
+			margin-left: 10px;
+			text-transform: capitalize;
+			text-align: left !important;
+		}
 
-    &__icon-left {
-      @extend %input-icon-shared;
-      border-radius: 20rem 0 0 20rem;
-      border-right: 0;
-    }
+		input {
+			padding: 12px;
+			border-left: none;
+			border-radius: 0 20rem 20rem 0;
+		}
 
-    &__icon-right {
-      @extend %input-icon-shared;
-      border-radius: 0 20rem 20rem 0;
-      border-left: 0;
-    }
-  }
+		&__icon-left {
+			@extend %input-icon-shared;
+			border-radius: 20rem 0 0 20rem;
+			border-right: 0;
+		}
 
-  &-admin {
-    position: relative;
+		&__icon-right {
+			@extend %input-icon-shared;
+			border-radius: 0 20rem 20rem 0;
+			border-left: 0;
+		}
+	}
 
-    label {
-      position: absolute;
-      top: -17px;
-      left: 19px;
-      padding: 6px 10px;
-      z-index: 4;
-      font-size: 16px;
-      color: $border-color-custom;
+	&-admin {
+		position: relative;
+		margin-bottom: 35px;
 
-      &::after {
-        position: absolute;
-        content: "";
-        background-color: #ffffff;
-        z-index: -1;
-        top: 0;
-        left: 0;
-        height: 100%;
-        width: 100%;
-      }
-    }
+		label {
+			position: absolute;
+			top: -17px;
+			left: 19px;
+			padding: 6px 10px;
+			z-index: 4;
+			font-size: 16px;
+			color: $border-color-custom;
 
-    input {
-      position: relative;
-      height: 60px;
-      font-size: 18px;
-      border: 1px solid $border-color-custom-70;
-      padding: 19px 14px;
-      border-radius: 4px !important;
+			&::after {
+				position: absolute;
+				content: "";
+				background-color: #ffffff;
+				z-index: -1;
+				top: 0;
+				left: 0;
+				height: 100%;
+				width: 100%;
+			}
+		}
 
-      &:focus {
-        border-color: $border-color-custom;
-      }
-    }
+		input {
+			position: relative;
+			height: 60px;
+			font-size: 18px;
+			border: 1px solid $border-color-custom-70;
+			padding: 19px 14px;
+			border-radius: 4px !important;
 
-    &__icon-right {
-      position: absolute;
-      top: 21px;
-      right: 30px;
-      border: none;
-      height: 18px;
-      width: 27px;
-      z-index: 4;
+			&:focus {
+				border-color: $border-color-custom;
+			}
+		}
 
-      img {
-        height: 100%;
-        width: 100%;
-      }
-    }
-  }
+		&__icon-right {
+			position: absolute;
+			top: 21px;
+			right: 30px;
+			border: none;
+			height: 18px;
+			width: 27px;
+			z-index: 4;
 
-  & > span {
-    position: absolute;
-    left: 27px;
-    bottom: -20px;
-    color: red;
-    font-size: 12px;
-    font-weight: bold;
-  }
+			img {
+				height: 100%;
+				width: 100%;
+			}
+		}
+	}
+
+	& > span {
+		position: absolute;
+		left: 27px;
+		bottom: -20px;
+		color: red;
+		font-size: 12px;
+		font-weight: bold;
+	}
 }

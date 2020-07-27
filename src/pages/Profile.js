@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import AvatarAdmin from "../components/AvatarAdmin";
 import AdminSection from "../components/AdminSection";
 import trumpAvatar from "../assets/img/test_avatar.jpg";
-import { transformToArr } from "../helper";
+import { transformToArr, initStateCreator } from "../helper";
 import ButtonListWrapper from "../components/ButtonListWrapper";
 
 export default function Profile() {
+	const onSubmitFormHandler = (e) => {
+		e.preventDefault();
+		console.log("Submit form!", formChangePasswordState);
+	};
+
 	const infoFormData = {
 		fullName: {
 			pageType: "admin",
@@ -29,7 +34,7 @@ export default function Profile() {
 			pageType: "admin",
 			customStyle: "col-lg-6",
 			config: {
-				type: "tel",
+				type: "text",
 				label: "Phone",
 				placeholder: "Your phone number",
 			},
@@ -73,16 +78,32 @@ export default function Profile() {
 			config: {
 				isFull: true,
 				title: "Save",
+				onClickHandler: onSubmitFormHandler,
 			},
 		},
-		submit: {
+		logout: {
 			pageType: "admin",
 			buttonType: "button",
 			config: {
 				isFull: false,
 				title: "Log Out",
+				onClickHandler: () => {},
 			},
 		},
+	};
+
+	// Create dynamic initState
+	const initialState = initStateCreator(transformToArr(changePasswordFormData));
+	const [formChangePasswordState, setFormChangePasswordState] = useState(
+		initialState
+	);
+
+	// set form's input state
+	const onUserInputHandler = (val, name) => {
+		setFormChangePasswordState((prevState) => ({
+			...prevState,
+			[name]: val,
+		}));
 	};
 
 	const avatarAdmin = (
@@ -93,8 +114,11 @@ export default function Profile() {
 			<AdminSection
 				sectionHeader={avatarAdmin}
 				sectionData={transformToArr(infoFormData)}
+				formInputstate={{}}
 			/>
 			<AdminSection
+				onUserInputHandler={onUserInputHandler}
+				formInputstate={formChangePasswordState}
 				sectionHeader="Change Password"
 				sectionData={transformToArr(changePasswordFormData)}
 			/>

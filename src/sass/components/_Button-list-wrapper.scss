@@ -1,12 +1,12 @@
 .Button-list-wrapper {
-  &-guess {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 12px auto;
-  }
+	&-guess {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin: 12px auto;
+	}
 
-  &-admin {
-    display: block;
-  }
+	&-admin {
+		display: block;
+	}
 }
