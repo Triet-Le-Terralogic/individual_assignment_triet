@@ -39,6 +39,11 @@ const reducer = (state = initialState, action) => {
 				serverMsg: action.payload.msg,
 			};
 
+		case actionTypes.REGISTER_FAIL:
+			return {
+				...state,
+				serverMsg: action.payload.msg,
+			};
 		case actionTypes.LOGOUT:
 			return {
 				...state,

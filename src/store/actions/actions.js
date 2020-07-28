@@ -16,7 +16,7 @@ export const onLoginFail = () => {
 	return {
 		type: actionTypes.LOGIN_FAIL,
 		payload: {
-			msg: "Your Email or Password is incorrect!",
+			msg: "Your email or password is incorrect!",
 		},
 	};
 };
@@ -26,6 +26,15 @@ export const onRegisterSuccess = (data) => {
 		type: actionTypes.REGISTER_SUCCESS,
 		payload: {
 			msg: data.msg,
+		},
+	};
+};
+
+export const onRegisterFail = () => {
+	return {
+		type: actionTypes.REGISTER_FAIL,
+		payload: {
+			msg: "Unable register at the moment, try again later!",
 		},
 	};
 };

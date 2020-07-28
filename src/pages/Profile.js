@@ -4,12 +4,14 @@ import AdminLayout from "../layouts/AdminLayout";
 import AvatarAdmin from "../components/AvatarAdmin";
 import AdminSection from "../components/AdminSection";
 import trumpAvatar from "../assets/img/test_avatar.jpg";
+import ButtonListWrapper from "../components/ButtonListWrapper";
+import Modal from "../layouts/Modal";
+
 import {
 	transformToArr,
 	initStateCreator,
 	changePasswordValidator,
 } from "../helper";
-import ButtonListWrapper from "../components/ButtonListWrapper";
 
 export default function Profile({
 	onLogoutHandler = () => {},
@@ -26,7 +28,7 @@ export default function Profile({
 			onChangePasswordHandler(changePassData);
 		} else {
 			// else popup invalid form
-			console.log("invalid form");
+			setModalState(true);
 		}
 	};
 
@@ -116,6 +118,7 @@ export default function Profile({
 	const [formChangePasswordState, setFormChangePasswordState] = useState(
 		initialState
 	);
+	const [modalState, setModalState] = useState(false);
 
 	// set form's input state
 	const onUserInputHandler = (val, name) => {
@@ -129,25 +132,35 @@ export default function Profile({
 		<AvatarAdmin avatarTitle={userInfo.name} avatarImg={trumpAvatar} />
 	);
 	return (
-		<AdminLayout>
-			<div className="Profile container text-center text-lg-left">
-				<AdminSection
-					sectionHeader={avatarAdmin}
-					sectionData={transformToArr(infoFormData)}
-					formInputstate={userInfo}
-				/>
-				<AdminSection
-					onUserInputHandler={onUserInputHandler}
-					formInputstate={formChangePasswordState}
-					sectionHeader="Change Password"
-					sectionData={transformToArr(changePasswordFormData)}
-				/>
-				<ButtonListWrapper
-					buttonData={transformToArr(buttonData)}
-					pageType="admin"
-				/>
-			</div>
-		</AdminLayout>
+		<>
+			<Modal
+				modalHeader="Change password failed"
+				modalBody="Invalid password/Confirm password does not match!"
+				modalType="nofi"
+				isShow={modalState}
+				denyFunc={() => setModalState(false)}
+				acceptFunc={() => setModalState(false)}
+			/>
+			<AdminLayout>
+				<div className="Profile container text-center text-lg-left">
+					<AdminSection
+						sectionHeader={avatarAdmin}
+						sectionData={transformToArr(infoFormData)}
+						formInputstate={userInfo}
+					/>
+					<AdminSection
+						onUserInputHandler={onUserInputHandler}
+						formInputstate={formChangePasswordState}
+						sectionHeader="Change Password"
+						sectionData={transformToArr(changePasswordFormData)}
+					/>
+					<ButtonListWrapper
+						buttonData={transformToArr(buttonData)}
+						pageType="admin"
+					/>
+				</div>
+			</AdminLayout>
+		</>
 	);
 }
 

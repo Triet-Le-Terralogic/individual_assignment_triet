@@ -14,6 +14,7 @@ export const postRegisterData = (registerData) => {
 
 			dispatch(actions.onRegisterSuccess(respData.data));
 		} catch (error) {
+			dispatch(actions.onRegisterFail());
 			console.log(error);
 		}
 	};

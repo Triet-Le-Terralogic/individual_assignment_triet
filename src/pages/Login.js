@@ -19,7 +19,6 @@ const Login = ({ onLoginHandler = () => {}, history = {} }) => {
 		} else {
 			// else popup invalid form notification
 			setModalState(true);
-			console.log("invalid form");
 		}
 	};
 
