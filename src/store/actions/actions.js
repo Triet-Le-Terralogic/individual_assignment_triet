@@ -60,9 +60,18 @@ export const onLogoutHandler = (data) => {
 
 export const onChangePassSuccess = (data) => {
 	return {
-		type: actionTypes.CHANGE_PASS,
+		type: actionTypes.CHANGEPASS_SUCCESS,
 		payload: {
 			msg: data.msg,
+		},
+	};
+};
+
+export const onChangePassFail = () => {
+	return {
+		type: actionTypes.CHANGEPASS_FAIL,
+		payload: {
+			msg: "Something went wrong, try again later",
 		},
 	};
 };
