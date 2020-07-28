@@ -15,7 +15,7 @@ function App(props) {
 	const mounted = useRef(false);
 	const [modalState, setModalState] = useState(false);
 	useEffect(() => {
-		if (mounted.current) {
+		if (mounted.current && serverMsg.length) {
 			setModalState(true);
 		} else {
 			mounted.current = true;
