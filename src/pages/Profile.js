@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import PropTypes from "prop-types";
+import { useDeepCompareEffect } from "use-deep-compare";
+
 import AdminLayout from "../layouts/AdminLayout";
 import AvatarAdmin from "../components/AvatarAdmin";
 import AdminSection from "../components/AdminSection";
 import trumpAvatar from "../assets/img/test_avatar.jpg";
 import ButtonListWrapper from "../components/ButtonListWrapper";
 import Modal from "../layouts/Modal";
+import { isEqual } from "lodash";
 
 import {
 	transformToArr,
@@ -20,6 +23,23 @@ export default function Profile({
 	userInfo = {},
 	token = "",
 }) {
+	const changeUserInfoInitState = userInfo;
+	const userInfoSnapShot = useRef(userInfo);
+	const [canUserSaveState, setCanUserSaveState] = useState(false);
+	const [changeUserInfoState, setChangeUserInfoState] = useState(
+		changeUserInfoInitState
+	);
+
+	const mounted = useRef(false);
+	useDeepCompareEffect(() => {
+		if (!isEqual(changeUserInfoState, userInfoSnapShot) && mounted.current) {
+			setCanUserSaveState(true);
+			console.log("can save!");
+		} else {
+			mounted.current = true;
+		}
+	}, [changeUserInfoState]);
+
 	const onSubmitFormHandler = () => {
 		if (changePasswordValidator(formChangePasswordState)) {
 			const changePassData = {
@@ -98,6 +118,7 @@ export default function Profile({
 			pageType: "admin",
 			buttonType: "button",
 			config: {
+				isDisabled: !canUserSaveState,
 				isFull: true,
 				title: "Save",
 				onClickHandler: onSubmitFormHandler,
@@ -118,20 +139,15 @@ export default function Profile({
 	const changePasswordInitState = initStateCreator(
 		transformToArr(changePasswordFormData)
 	);
-	const changeUserInfoInitState = userInfo;
 
 	const [formChangePasswordState, setFormChangePasswordState] = useState(
 		changePasswordInitState
 	);
-	const [changeUserInfoState, setChangeUserInfoState] = useState(
-		changeUserInfoInitState
-	);
-
 	const [changePasswordModalState, setChangePasswordModalState] = useState(
 		false
 	);
 
-	// set form's input state
+	// Set form's input state
 	const onUserChangePasswordHandler = (val, name) => {
 		setFormChangePasswordState((prevState) => ({
 			...prevState,

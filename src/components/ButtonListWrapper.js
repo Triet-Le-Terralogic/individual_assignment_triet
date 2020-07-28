@@ -14,6 +14,11 @@ export default function ButtonListWrapper({
 			buttonTitle={btn.config.title}
 			isFull={btn.config.isFull}
 			buttonType={btn.buttonType}
+			isDisabled={
+				typeof btn.config.isDisabled !== "undefined"
+					? btn.config.isDisabled
+					: false
+			}
 		/>
 	));
 

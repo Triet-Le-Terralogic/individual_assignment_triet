@@ -7,6 +7,7 @@ export default function Button({
 	buttonType = "button",
 	buttonTitle = "Click!",
 	isFull = true,
+	isDisabled = false,
 }) {
 	const buttonStyle = isFull
 		? `Button-${pageType} Button-${pageType}--state-fulfill`
@@ -17,6 +18,7 @@ export default function Button({
 			className={`${buttonStyle} btn btn-primary rounded-pill font-weight-bold `}
 			type={buttonType}
 			onClick={onClickHandler}
+			disabled={isDisabled}
 		>
 			{buttonTitle}
 		</button>
@@ -29,4 +31,5 @@ Button.propTypes = {
 	buttonType: Proptypes.oneOf(["button", "submit"]),
 	buttonTitle: Proptypes.string.isRequired,
 	isFull: Proptypes.bool,
+	isDisabled: Proptypes.bool,
 };
