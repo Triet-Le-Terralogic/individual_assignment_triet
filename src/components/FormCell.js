@@ -5,7 +5,6 @@ import { inputValidator } from "../helper";
 
 export default function FormCell({
 	onUserInputHandler = () => {},
-	validateHandler = () => {},
 	pageType = "guess",
 	inputID = "",
 	inputValue = "",
@@ -90,7 +89,6 @@ export default function FormCell({
 
 FormCell.propTypes = {
 	onUserInputHandler: PropTypes.func,
-	validateHandler: PropTypes.func,
 	pageType: PropTypes.oneOf(["guess", "admin"]),
 	inputID: PropTypes.string.isRequired,
 	inputType: PropTypes.oneOf(["email", "password", "text"]),

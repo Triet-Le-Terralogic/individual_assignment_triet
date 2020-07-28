@@ -32,8 +32,7 @@ export const inputValidator = (userInput = "", inputType = "") => {
 		case "newPassword":
 		case "confirmPassword":
 			if (!validatePassword(userInput)) {
-				errMsg =
-					"Password lenght must greater than 8 character. Invalid password!";
+				errMsg = "Password lenght must greater than 8 character.";
 			}
 			break;
 
@@ -59,10 +58,10 @@ export const inputValidator = (userInput = "", inputType = "") => {
 export const loginValidator = (submitData) => {
 	const { email, password } = submitData;
 	let isValid = true;
-	if (!validateEmail(email) && isValid === true) {
+	if (!validateEmail(email) && isValid) {
 		isValid = false;
 	}
-	if (!validatePassword(password) && isValid === true) {
+	if (!validatePassword(password) && isValid) {
 		isValid = false;
 	}
 	return isValid;
@@ -71,35 +70,49 @@ export const loginValidator = (submitData) => {
 export const registerValidator = (submitData) => {
 	const { email, password, confirmPassword, name, phone } = submitData;
 	let isValid = true;
-	if (!validateEmail(email) && isValid === true) {
+	if (!validateEmail(email) && isValid) {
 		isValid = false;
 	}
-	if (!validatePassword(password) && isValid === true) {
+	if (!validatePassword(password) && isValid) {
 		isValid = false;
 	}
-	if (confirmPassword !== password && isValid === true) {
+	if (confirmPassword !== password && isValid) {
 		isValid = false;
 	}
-	if (!validateName(name) && isValid === true) {
+	if (!validateName(name) && isValid) {
 		isValid = false;
 	}
-	if (!validatePhone(phone) && isValid === true) {
+	if (!validatePhone(phone) && isValid) {
 		isValid = false;
 	}
-	console.log(isValid);
 	return isValid;
 };
 
 export const changePasswordValidator = (submitData) => {
 	const { newPassword, confirmPassword } = submitData;
 	let isValid = true;
-	if (!validatePassword(newPassword) && isValid === true) {
+	if (!validatePassword(newPassword) && isValid) {
 		isValid = false;
 	}
-	if (newPassword !== confirmPassword && isValid === true) {
+	if (newPassword !== confirmPassword && isValid) {
 		isValid = false;
 	}
 	return isValid;
+};
+
+export const changeUserInfoValidator = (submitData) => {
+	const { email, name, phone, avatar } = submitData;
+	let isValid = true;
+	if (validateEmail(email) && isValid) {
+		isValid = false;
+	}
+	if (!validateName(name) && isValid) {
+		isValid = false;
+	}
+	if (!validatePhone(phone) && isValid) {
+		isValid = false;
+	}
+	if (!avatar.includes("http://api.terralogic.ngrok.io/")) return isValid;
 };
 
 const validatePassword = (password) => {

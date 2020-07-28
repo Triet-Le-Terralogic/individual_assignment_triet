@@ -39,7 +39,7 @@ export const onRegisterFail = () => {
 	};
 };
 
-export const onLogoutHandler = (data) => {
+export const onLogoutHandler = () => {
 	return {
 		type: actionTypes.LOGOUT,
 		payload: {

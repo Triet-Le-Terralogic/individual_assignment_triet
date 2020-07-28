@@ -63,7 +63,7 @@ export const changePassword = ({ passwordData, token }) => {
 	};
 };
 
-export const upLoadAvatar = ({ avatarFile, token }) => {
+export const uploadAvatar = ({ avatarFile, token }) => {
 	return async (dispatch) => {
 		const dataFile = new FormData();
 		dataFile.append("key", "image");
@@ -81,6 +81,28 @@ export const upLoadAvatar = ({ avatarFile, token }) => {
 				},
 				url: "http://api.terralogic.ngrok.io/api/upload",
 				data: dataFile,
+			});
+			console.log(respData);
+
+			dispatch(actions.onUploadAvatarSuccess(respData.data));
+		} catch (error) {
+			console.log(error);
+			dispatch(actions.onUploadAvatarFail());
+		}
+	};
+};
+
+export const uploadUserInfo = ({ dataUpload, token }) => {
+	return async (dispatch) => {
+		try {
+			const respData = await axios.request({
+				method: "PATCH",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${token}`,
+				},
+				url: "http://api.terralogic.ngrok.io/api/upload",
+				data: dataUpload,
 			});
 			console.log(respData);
 

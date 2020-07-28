@@ -8,51 +8,31 @@ import AdminSection from "../components/AdminSection";
 import trumpAvatar from "../assets/img/test_avatar.jpg";
 import ButtonListWrapper from "../components/ButtonListWrapper";
 import Modal from "../layouts/Modal";
-import { isEqual } from "lodash";
+// import { isEqual } from "lodash";
+import isEqual from "fast-deep-equal";
 
 import {
 	transformToArr,
 	initStateCreator,
 	changePasswordValidator,
+	changeUserInfoValidator,
 } from "../helper";
 
 export default function Profile({
 	onLogoutHandler = () => {},
 	onChangePasswordHandler = () => {},
 	onUploadAvatarHandler = () => {},
+	onUploadUserInfo = () => {},
 	userInfo = {},
 	token = "",
 }) {
 	const changeUserInfoInitState = userInfo;
 	const userInfoSnapShot = useRef(userInfo);
-	const [canUserSaveState, setCanUserSaveState] = useState(false);
-	const [changeUserInfoState, setChangeUserInfoState] = useState(
-		changeUserInfoInitState
-	);
-
-	const mounted = useRef(false);
-	useDeepCompareEffect(() => {
-		if (!isEqual(changeUserInfoState, userInfoSnapShot) && mounted.current) {
-			setCanUserSaveState(true);
-			console.log("can save!");
-		} else {
-			mounted.current = true;
-		}
-	}, [changeUserInfoState]);
-
-	const onSubmitFormHandler = () => {
-		if (changePasswordValidator(formChangePasswordState)) {
-			const changePassData = {
-				token: token,
-				passwordData: formChangePasswordState,
-			};
-			onChangePasswordHandler(changePassData);
-		} else {
-			// else popup invalid form
-			setChangePasswordModalState(true);
-		}
-	};
-
+	const changePasswordSnapShot = useRef({
+		currentPassword: "",
+		newPassword: "",
+		confirmPassword: "",
+	});
 	const infoFormData = {
 		name: {
 			pageType: "admin",
@@ -113,6 +93,62 @@ export default function Profile({
 		},
 	};
 
+	const [canUserSaveState, setCanUserSaveState] = useState(false);
+	const [userInfoState, setUserInfoState] = useState(changeUserInfoInitState);
+	// Create dynamic initState for change password and change user info fields
+	const changePasswordInitState = initStateCreator(
+		transformToArr(changePasswordFormData)
+	);
+	const [formChangePasswordState, setFormChangePasswordState] = useState(
+		changePasswordInitState
+	);
+
+	const mounted = useRef(false);
+	useDeepCompareEffect(() => {
+		if (mounted.current) {
+			if (
+				!isEqual(userInfoState, userInfoSnapShot.current) ||
+				!isEqual(formChangePasswordState, changePasswordSnapShot.current)
+			) {
+				setCanUserSaveState(true);
+				console.log("can save!");
+			} else {
+				setCanUserSaveState(false);
+			}
+		} else {
+			mounted.current = true;
+		}
+	}, [userInfoState, formChangePasswordState]);
+
+	const onSubmitFormHandler = () => {
+		// Check if password field have changed? then validate.
+		if (!isEqual(formChangePasswordState, changePasswordSnapShot.current)) {
+			if (changePasswordValidator(formChangePasswordState)) {
+				const changePassData = {
+					token: token,
+					passwordData: formChangePasswordState,
+				};
+				onChangePasswordHandler(changePassData);
+			} else {
+				// else popup invalid form
+				setChangePasswordModalState(true);
+			}
+		}
+
+		if (!isEqual(userInfoState, userInfoSnapShot.current)) {
+			if (changeUserInfoValidator(userInfoState)) {
+				const uploadUserInfoData = {
+					token: token,
+					dataUpload: userInfoState,
+				};
+				onUploadUserInfo(uploadUserInfoData);
+			} else {
+				// Popup invlaid form
+				console.log("invalid form!");
+			}
+		}
+	};
+
 	const buttonData = {
 		save: {
 			pageType: "admin",
@@ -135,14 +171,6 @@ export default function Profile({
 		},
 	};
 
-	// Create dynamic initState for change password and change user info fields
-	const changePasswordInitState = initStateCreator(
-		transformToArr(changePasswordFormData)
-	);
-
-	const [formChangePasswordState, setFormChangePasswordState] = useState(
-		changePasswordInitState
-	);
 	const [changePasswordModalState, setChangePasswordModalState] = useState(
 		false
 	);
@@ -156,7 +184,7 @@ export default function Profile({
 	};
 
 	const onUserChangeInfoHandler = (val, name) => {
-		setChangeUserInfoState((prevState) => ({
+		setUserInfoState((prevState) => ({
 			...prevState,
 			[name]: val,
 		}));
@@ -195,7 +223,7 @@ export default function Profile({
 				<div className="Profile container text-center text-lg-left">
 					<AdminSection
 						onUserInputHandler={onUserChangeInfoHandler}
-						formInputstate={changeUserInfoState}
+						formInputstate={userInfoState}
 						sectionHeader={avatarAdmin}
 						sectionData={transformToArr(infoFormData)}
 					/>
@@ -219,6 +247,7 @@ Profile.propType = {
 	onLogoutHandler: PropTypes.func,
 	onChangePasswordHandler: PropTypes.func,
 	onUploadAvatarHandler: PropTypes.func,
+	onUploadUserInfo: PropTypes.func,
 	userInfo: PropTypes.object,
 	token: PropTypes.string,
 };

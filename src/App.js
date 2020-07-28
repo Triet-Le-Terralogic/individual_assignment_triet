@@ -76,7 +76,8 @@ const mapDispatchToProps = (dispatch) => {
 		onChangePasswordHandler: (changePassData) =>
 			dispatch(actionCreators.changePassword(changePassData)),
 		onUploadAvatarHandler: (fileData) =>
-			dispatch(actionCreators.upLoadAvatar(fileData)),
+			dispatch(actionCreators.uploadAvatar(fileData)),
+		onUploadUserInfo: (userData) => dispatch(actionCreators.uploadUserInfo),
 	};
 };
 

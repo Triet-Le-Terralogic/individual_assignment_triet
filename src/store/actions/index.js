@@ -2,6 +2,7 @@ export {
 	postLoginData,
 	postRegisterData,
 	changePassword,
-	upLoadAvatar,
+	uploadAvatar,
+	uploadUserInfo,
 } from "./asyncActions";
 export { onLoginSuccess, onRegisterSuccess, onLogoutHandler } from "./actions";
