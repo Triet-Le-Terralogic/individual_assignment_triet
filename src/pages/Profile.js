@@ -16,6 +16,7 @@ import {
 export default function Profile({
 	onLogoutHandler = () => {},
 	onChangePasswordHandler = () => {},
+	onUploadAvatarHandler = () => {},
 	userInfo = {},
 	token = "",
 }) {
@@ -28,7 +29,7 @@ export default function Profile({
 			onChangePasswordHandler(changePassData);
 		} else {
 			// else popup invalid form
-			setModalState(true);
+			setChangePasswordModalState(true);
 		}
 	};
 
@@ -113,23 +114,55 @@ export default function Profile({
 		},
 	};
 
-	// Create dynamic initState
-	const initialState = initStateCreator(transformToArr(changePasswordFormData));
-	const [formChangePasswordState, setFormChangePasswordState] = useState(
-		initialState
+	// Create dynamic initState for change password and change user info fields
+	const changePasswordInitState = initStateCreator(
+		transformToArr(changePasswordFormData)
 	);
-	const [modalState, setModalState] = useState(false);
+	const changeUserInfoInitState = userInfo;
+
+	const [formChangePasswordState, setFormChangePasswordState] = useState(
+		changePasswordInitState
+	);
+	const [changeUserInfoState, setChangeUserInfoState] = useState(
+		changeUserInfoInitState
+	);
+
+	const [changePasswordModalState, setChangePasswordModalState] = useState(
+		false
+	);
 
 	// set form's input state
-	const onUserInputHandler = (val, name) => {
+	const onUserChangePasswordHandler = (val, name) => {
 		setFormChangePasswordState((prevState) => ({
 			...prevState,
 			[name]: val,
 		}));
 	};
 
+	const onUserChangeInfoHandler = (val, name) => {
+		setChangeUserInfoState((prevState) => ({
+			...prevState,
+			[name]: val,
+		}));
+	};
+
+	const onChangeAvatarHandler = (file) => {
+		const fileData = {
+			avatarFile: file,
+			token,
+		};
+		onUploadAvatarHandler(fileData);
+	};
+
+	const avatarSrc =
+		userInfo.avatar.length === 0 ? trumpAvatar : userInfo.avatar;
+
 	const avatarAdmin = (
-		<AvatarAdmin avatarTitle={userInfo.name} avatarImg={trumpAvatar} />
+		<AvatarAdmin
+			avatarTitle={userInfo.name}
+			avatarImg={avatarSrc}
+			onChangeAvatar={onChangeAvatarHandler}
+		/>
 	);
 	return (
 		<>
@@ -137,19 +170,21 @@ export default function Profile({
 				modalHeader="Change password failed"
 				modalBody="Invalid password/Confirm password does not match!"
 				modalType="nofi"
-				isShow={modalState}
-				denyFunc={() => setModalState(false)}
-				acceptFunc={() => setModalState(false)}
+				isShow={changePasswordModalState}
+				denyFunc={() => setChangePasswordModalState(false)}
+				acceptFunc={() => setChangePasswordModalState(false)}
 			/>
+
 			<AdminLayout>
 				<div className="Profile container text-center text-lg-left">
 					<AdminSection
+						onUserInputHandler={onUserChangeInfoHandler}
+						formInputstate={changeUserInfoState}
 						sectionHeader={avatarAdmin}
 						sectionData={transformToArr(infoFormData)}
-						formInputstate={userInfo}
 					/>
 					<AdminSection
-						onUserInputHandler={onUserInputHandler}
+						onUserInputHandler={onUserChangePasswordHandler}
 						formInputstate={formChangePasswordState}
 						sectionHeader="Change Password"
 						sectionData={transformToArr(changePasswordFormData)}
@@ -167,6 +202,7 @@ export default function Profile({
 Profile.propType = {
 	onLogoutHandler: PropTypes.func,
 	onChangePasswordHandler: PropTypes.func,
+	onUploadAvatarHandler: PropTypes.func,
 	userInfo: PropTypes.object,
 	token: PropTypes.string,
 };

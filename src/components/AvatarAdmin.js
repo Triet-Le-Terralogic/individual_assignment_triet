@@ -5,6 +5,7 @@ import penIcon from "../assets/img/pen_icon.svg";
 export default function AvatarAdmin({
 	avatarTitle = "default",
 	avatarImg = "",
+	onChangeAvatar = () => {},
 }) {
 	return (
 		<div className="Avatar-admin">
@@ -15,9 +16,14 @@ export default function AvatarAdmin({
 					alt="Your avatar"
 				/>
 			</div>
-			<span>
+			<label htmlFor="file-input">
 				<img className="img-fluid" src={penIcon} alt="pen icon" />
-			</span>
+			</label>
+			<input
+				id="file-input"
+				type="file"
+				onChange={(event) => onChangeAvatar(event.target.files[0])}
+			/>
 			<p className="Avatar-admin__title">{avatarTitle}</p>
 		</div>
 	);
@@ -25,5 +31,6 @@ export default function AvatarAdmin({
 
 AvatarAdmin.propTypes = {
 	avatarTitle: PropTypes.string.isRequired,
-	avatarImg: PropTypes.string.isRequired, //should be Base64 picture
+	avatarImg: PropTypes.string.isRequired, // 'http://api.terralogic.ngrok.io/${tokenformAPI}'
+	onChangeAvatar: PropTypes.func,
 };

@@ -49,6 +49,7 @@ export const onLogoutHandler = (data) => {
 				token: "",
 			},
 			userInfo: {
+				avatar: "",
 				email: "",
 				name: "",
 				phone: "",
@@ -72,6 +73,25 @@ export const onChangePassFail = () => {
 		type: actionTypes.CHANGEPASS_FAIL,
 		payload: {
 			msg: "Something went wrong, try again later",
+		},
+	};
+};
+
+export const onUploadAvatarSuccess = (data) => {
+	return {
+		type: actionTypes.UPLOAD_AVATAR_SUCCESS,
+		payload: {
+			avatar: `http://api.terralogic.ngrok.io/${data.data}`,
+			msg: data.msg,
+		},
+	};
+};
+
+export const onUploadAvatarFail = () => {
+	return {
+		type: actionTypes.UPLOAD_AVATAR_FAIL,
+		payload: {
+			msg: "Unable to upload avatar, try again later!",
 		},
 	};
 };

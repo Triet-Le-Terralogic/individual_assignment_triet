@@ -55,9 +55,39 @@ export const changePassword = ({ passwordData, token }) => {
 				url: "http://api.terralogic.ngrok.io/api/changePassword",
 				data: JSON.stringify(data),
 			});
+
 			dispatch(actions.onChangePassSuccess(respData.data));
 		} catch (error) {
 			console.log(error);
+		}
+	};
+};
+
+export const upLoadAvatar = ({ avatarFile, token }) => {
+	return async (dispatch) => {
+		const dataFile = new FormData();
+		dataFile.append("key", "image");
+		dataFile.append("type", "file");
+		dataFile.append("src", avatarFile);
+
+		try {
+			const respData = await axios.request({
+				method: "POST",
+				headers: {
+					key: "Content-Type",
+					value: "multipart/form-data",
+					type: "text",
+					Authorization: `Bearer ${token}`,
+				},
+				url: "http://api.terralogic.ngrok.io/api/upload",
+				data: dataFile,
+			});
+			console.log(respData);
+
+			dispatch(actions.onUploadAvatarSuccess(respData.data));
+		} catch (error) {
+			console.log(error);
+			dispatch(actions.onUploadAvatarFail());
 		}
 	};
 };

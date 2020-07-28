@@ -9,7 +9,7 @@
 		height: 60px;
 	}
 
-	span {
+	label {
 		position: absolute;
 		top: -16px;
 		left: 38px;
@@ -22,5 +22,9 @@
 		font-size: 32px;
 		margin: 0 24px;
 		font-weight: bold;
+	}
+
+	& > input {
+		display: none;
 	}
 }
