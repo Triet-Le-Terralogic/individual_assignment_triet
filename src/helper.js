@@ -31,8 +31,8 @@ export const inputValidator = (userInput = "", inputType = "") => {
 		case "currentPassword":
 		case "newPassword":
 		case "confirmPassword":
-			if (!validatePassword(userInput)) {
-				errMsg = "Password lenght must greater than 8 character.";
+			if (!validatePassword(userInput) && userInput.length > 0) {
+				errMsg = "Password length must greater than 8 character.";
 			}
 			break;
 

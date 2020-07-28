@@ -111,7 +111,6 @@ export default function Profile({
 				!isEqual(formChangePasswordState, changePasswordSnapShot.current)
 			) {
 				setCanUserSaveState(true);
-				console.log("can save!");
 			} else {
 				setCanUserSaveState(false);
 			}
