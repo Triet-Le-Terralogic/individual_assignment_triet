@@ -5,6 +5,8 @@ import GuessLayout from "../layouts/GuessLayout";
 import FormWrapper from "../components/FormWrapper";
 import ButtonListWrapper from "../components/ButtonListWrapper";
 import CheckBox from "../components/CheckBox";
+import Modal from "../layouts/Modal";
+
 import Logo from "../components/Logo";
 import emaiIcon from "../assets/img/email_icon.svg";
 import keyIcon from "../assets/img/key_icon.svg";
@@ -15,7 +17,8 @@ const Login = ({ onLoginHandler = () => {}, history = {} }) => {
 		if (loginValidator(formInputstate)) {
 			onLoginHandler(formInputstate);
 		} else {
-			// else popup invalid form
+			// else popup invalid form notification
+			setModalState(true);
 			console.log("invalid form");
 		}
 	};
@@ -51,6 +54,7 @@ const Login = ({ onLoginHandler = () => {}, history = {} }) => {
 	const buttonData = {
 		register: {
 			buttonType: "button",
+			pageType: "guess",
 			config: {
 				isFull: false,
 				title: "Register",
@@ -59,6 +63,7 @@ const Login = ({ onLoginHandler = () => {}, history = {} }) => {
 		},
 		login: {
 			buttonType: "button",
+			pageType: "guess",
 			config: {
 				isFull: true,
 				title: "Login",
@@ -69,6 +74,7 @@ const Login = ({ onLoginHandler = () => {}, history = {} }) => {
 	// Create dynamic initState
 	const initialState = initStateCreator(transformToArr(formData));
 	const [formInputstate, setFormInputState] = useState(initialState);
+	const [modalState, setModalState] = useState(false);
 
 	// set form's input state
 	const onUserInputHandler = (val, name) => {
@@ -79,25 +85,35 @@ const Login = ({ onLoginHandler = () => {}, history = {} }) => {
 	};
 
 	return (
-		<GuessLayout>
-			<div className="Login container text-center text-lg-left">
-				<Logo />
-				<span className="Login__slogan">
-					Start your personal photo experience
-				</span>
-				<FormWrapper
-					onUserInputHandler={onUserInputHandler}
-					formTitle="Login your account"
-					formData={transformToArr(formData)}
-					formInputstate={formInputstate}
-				/>
-				<ButtonListWrapper
-					buttonData={transformToArr(buttonData)}
-					pageType="guess"
-				/>
-				<CheckBox checkBoxTitle="Remember password" />
-			</div>
-		</GuessLayout>
+		<>
+			<Modal
+				modalHeader="Login failed"
+				modalBody="Invalid email/password!"
+				modalType="nofi"
+				isShow={modalState}
+				denyFunc={() => setModalState(false)}
+				acceptFunc={() => setModalState(false)}
+			/>
+			<GuessLayout>
+				<div className="Login container text-center text-lg-left">
+					<Logo />
+					<span className="Login__slogan">
+						Start your personal photo experience
+					</span>
+					<FormWrapper
+						onUserInputHandler={onUserInputHandler}
+						formTitle="Login your account"
+						formData={transformToArr(formData)}
+						formInputstate={formInputstate}
+					/>
+					<ButtonListWrapper
+						buttonData={transformToArr(buttonData)}
+						pageType="guess"
+					/>
+					<CheckBox checkBoxTitle="Remember password" />
+				</div>
+			</GuessLayout>
+		</>
 	);
 };
 

@@ -126,3 +126,28 @@ const validateName = (name) => {
 
 	return regex.test(name);
 };
+
+// Create modal button data
+export const modalButtonDataCreator = ({ btn1 = {}, btn2 = {} }) => {
+	const data = {
+		button1: {
+			buttonType: "button",
+			pageType: "modal",
+			config: {
+				isFull: false,
+				title: btn1.title,
+				onClickHandler: btn1.func,
+			},
+		},
+		button2: {
+			buttonType: "button",
+			pageType: "modal",
+			config: {
+				isFull: true,
+				title: btn2.title,
+				onClickHandler: btn2.func,
+			},
+		},
+	};
+	return transformToArr(data);
+};

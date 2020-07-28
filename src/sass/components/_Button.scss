@@ -28,4 +28,19 @@
 			@include fill-button(false);
 		}
 	}
+
+	&-modal {
+		height: 40px;
+		padding: 0px 30px;
+		border-width: $border-width-custom;
+		margin-right: 15px;
+
+		&--state-fulfill {
+			@include fill-button(true);
+		}
+
+		&--state-empty {
+			@include fill-button(false);
+		}
+	}
 }

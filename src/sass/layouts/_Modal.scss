@@ -1,0 +1,27 @@
+.Modal {
+	background-color: #25262e;
+	color: #ffffff;
+	width: 40vw;
+	text-align: center;
+	border-radius: 5px;
+
+	& > div:first-child {
+		position: relative;
+		border-bottom: 2px solid #ffffff;
+	}
+
+	&__header {
+		padding: 0.5rem;
+	}
+
+	&__body {
+		padding: 1rem;
+	}
+
+	&__footer {
+		display: flex;
+		height: 70px;
+		align-items: center;
+		justify-content: flex-end;
+	}
+}

@@ -25,7 +25,7 @@ export default function Button({
 
 Button.propTypes = {
 	onClickHandler: Proptypes.func,
-	pageType: Proptypes.oneOf(["guess", "admin"]),
+	pageType: Proptypes.oneOf(["guess", "admin", "modal"]),
 	buttonType: Proptypes.oneOf(["button", "submit"]),
 	buttonTitle: Proptypes.string.isRequired,
 	isFull: Proptypes.bool,

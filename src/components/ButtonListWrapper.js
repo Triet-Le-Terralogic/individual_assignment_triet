@@ -25,6 +25,6 @@ export default function ButtonListWrapper({
 }
 
 ButtonListWrapper.propTypes = {
-	pageType: PropTypes.oneOf(["guess", "admin"]),
+	pageType: PropTypes.oneOf(["guess", "admin", "modal"]),
 	buttonData: PropTypes.arrayOf(PropTypes.object),
 };
