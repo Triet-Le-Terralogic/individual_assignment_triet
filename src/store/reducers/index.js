@@ -28,6 +28,11 @@ const reducer = (state = initialState, action) => {
 				},
 			};
 
+		case actionTypes.LOGIN_FAIL:
+			return {
+				...state,
+				serverMsg: action.payload.msg,
+			};
 		case actionTypes.REGISTER_SUCCESS:
 			return {
 				...state,

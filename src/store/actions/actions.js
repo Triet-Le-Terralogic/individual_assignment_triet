@@ -12,6 +12,15 @@ export const onLoginSuccess = (data) => {
 	};
 };
 
+export const onLoginFail = () => {
+	return {
+		type: actionTypes.LOGIN_FAIL,
+		payload: {
+			msg: "Your Email or Password is incorrect!",
+		},
+	};
+};
+
 export const onRegisterSuccess = (data) => {
 	return {
 		type: actionTypes.REGISTER_SUCCESS,

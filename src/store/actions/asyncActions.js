@@ -32,6 +32,7 @@ export const postLoginData = (loginData) => {
 			});
 			dispatch(actions.onLoginSuccess(respData.data));
 		} catch (error) {
+			dispatch(actions.onLoginFail());
 			console.log(error);
 		}
 	};
