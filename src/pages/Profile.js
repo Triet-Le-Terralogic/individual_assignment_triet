@@ -16,6 +16,7 @@ import {
 	initStateCreator,
 	changePasswordValidator,
 	changeUserInfoValidator,
+	uploadAvatarValidator,
 } from "../helper";
 
 export default function Profile({
@@ -192,11 +193,15 @@ export default function Profile({
 	};
 
 	const onChangeAvatarHandler = (file) => {
-		const fileData = {
-			avatarFile: file,
-			token,
-		};
-		onUploadAvatarHandler(fileData);
+		if (uploadAvatarValidator(file.name)) {
+			const fileData = {
+				avatarFile: file,
+				token,
+			};
+			onUploadAvatarHandler(fileData);
+		} else {
+			// popup
+		}
 	};
 
 	const avatarSrc =

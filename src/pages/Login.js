@@ -87,7 +87,7 @@ const Login = ({ onLoginHandler = () => {}, history = {} }) => {
 		<>
 			<Modal
 				modalHeader="Login failed"
-				modalBody="Invalid email/password!"
+				modalBody="Email or password are invalid"
 				modalType="nofi"
 				isShow={modalState}
 				denyFunc={() => setModalState(false)}

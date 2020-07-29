@@ -47,7 +47,7 @@ export const inputValidator = (userInput = "", inputType = "") => {
 
 		case "name":
 			if (!validateName(userInput)) {
-				errMsg = "Name not accept '_' symbol. Invalid name!";
+				errMsg = "Invalid name!";
 			}
 			break;
 
@@ -121,11 +121,14 @@ export const changeUserInfoValidator = (submitData) => {
 	return isValid;
 };
 
+export const uploadAvatarValidator = (fileType) => {
+	const regex = /(.*?)\.(jpg|jpeg|png|svg|gif)$/;
+	return regex.test(String(fileType));
+};
+
 const validatePassword = (password) => {
-	if (password.length < 8) {
-		return false;
-	}
-	return true;
+	const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])[0-9a-zA-Z!@#$%^&*]{8,}$/;
+	return regex.test(String(password));
 };
 // Regex email validator
 const validateEmail = (email) => {
