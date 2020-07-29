@@ -53,7 +53,6 @@ export const onLogoutHandler = () => {
 				email: "",
 				name: "",
 				phone: "",
-				id: "",
 			},
 		},
 	};
@@ -92,6 +91,30 @@ export const onUploadAvatarFail = () => {
 		type: actionTypes.UPLOAD_AVATAR_FAIL,
 		payload: {
 			msg: "Unable to upload avatar, try again later!",
+		},
+	};
+};
+
+export const onUpdateUserInfoSuccess = (data) => {
+	return {
+		type: actionTypes.UPDATE_USERINFO_SUCCESS,
+		payload: {
+			msg: data.msg,
+			userInfo: {
+				avatar: data.data.avatar,
+				email: data.data.email,
+				name: data.data.name,
+				phone: data.data.phone,
+			},
+		},
+	};
+};
+
+export const onUpdateUserInfoFail = () => {
+	return {
+		type: actionTypes.UPDATE_USERINFO_FAIL,
+		payload: {
+			msg: "Unable to update user infomation, try again later!",
 		},
 	};
 };

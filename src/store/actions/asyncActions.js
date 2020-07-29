@@ -15,7 +15,6 @@ export const postRegisterData = (registerData) => {
 			dispatch(actions.onRegisterSuccess(respData.data));
 		} catch (error) {
 			dispatch(actions.onRegisterFail());
-			console.log(error);
 		}
 	};
 };
@@ -34,7 +33,6 @@ export const postLoginData = (loginData) => {
 			dispatch(actions.onLoginSuccess(respData.data));
 		} catch (error) {
 			dispatch(actions.onLoginFail());
-			console.log(error);
 		}
 	};
 };
@@ -58,7 +56,7 @@ export const changePassword = ({ passwordData, token }) => {
 
 			dispatch(actions.onChangePassSuccess(respData.data));
 		} catch (error) {
-			console.log(error);
+			dispatch(actions.onChangePassFail());
 		}
 	};
 };
@@ -82,17 +80,15 @@ export const uploadAvatar = ({ avatarFile, token }) => {
 				url: "http://api.terralogic.ngrok.io/api/upload",
 				data: dataFile,
 			});
-			console.log(respData);
 
 			dispatch(actions.onUploadAvatarSuccess(respData.data));
 		} catch (error) {
-			console.log(error);
 			dispatch(actions.onUploadAvatarFail());
 		}
 	};
 };
 
-export const uploadUserInfo = ({ dataUpload, token }) => {
+export const updateUserInfo = ({ dataUpload, token }) => {
 	return async (dispatch) => {
 		try {
 			const respData = await axios.request({
@@ -101,15 +97,15 @@ export const uploadUserInfo = ({ dataUpload, token }) => {
 					"Content-Type": "application/json",
 					Authorization: `Bearer ${token}`,
 				},
-				url: "http://api.terralogic.ngrok.io/api/upload",
+				url: "http://api.terralogic.ngrok.io/api/update",
 				data: dataUpload,
 			});
-			console.log(respData);
+			console.log(respData.data);
 
-			dispatch(actions.onUploadAvatarSuccess(respData.data));
+			dispatch(actions.onUpdateUserInfoSuccess(respData.data));
 		} catch (error) {
 			console.log(error);
-			dispatch(actions.onUploadAvatarFail());
+			dispatch(actions.onUpdateUserInfoFail());
 		}
 	};
 };

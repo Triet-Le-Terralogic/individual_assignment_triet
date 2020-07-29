@@ -8,7 +8,6 @@ const initialState = {
 		email: "",
 		name: "",
 		phone: "",
-		id: "",
 	},
 	token: "",
 };
@@ -28,7 +27,6 @@ const reducer = (state = initialState, action) => {
 					email: action.payload.userInfo.email,
 					name: action.payload.userInfo.name,
 					phone: action.payload.userInfo.phone,
-					id: action.payload.userInfo.id,
 				},
 			};
 
@@ -42,6 +40,7 @@ const reducer = (state = initialState, action) => {
 		case actionTypes.CHANGEPASS_SUCCESS:
 		case actionTypes.CHANGEPASS_FAIL:
 		case actionTypes.UPLOAD_AVATAR_FAIL:
+		case actionTypes.UPDATE_USERINFO_FAIL:
 			return {
 				...state,
 				serverMsg: action.payload.msg,
@@ -63,6 +62,16 @@ const reducer = (state = initialState, action) => {
 				userInfo: {
 					...state.userInfo,
 					avatar: action.payload.avatar,
+				},
+			};
+
+		case actionTypes.UPDATE_USERINFO_SUCCESS:
+			return {
+				...state,
+				serverMsg: action.payload.msg,
+				userInfo: {
+					...state.userInfo,
+					...action.payload.userInfo,
 				},
 			};
 

@@ -105,6 +105,8 @@ export default function Profile({
 
 	const mounted = useRef(false);
 	useDeepCompareEffect(() => {
+		// // update userInfo snapshot when userinfo change
+		userInfoSnapShot.current = userInfo;
 		if (mounted.current) {
 			if (
 				!isEqual(userInfoState, userInfoSnapShot.current) ||
@@ -117,7 +119,7 @@ export default function Profile({
 		} else {
 			mounted.current = true;
 		}
-	}, [userInfoState, formChangePasswordState]);
+	}, [userInfoState, formChangePasswordState, userInfo]);
 
 	const onSubmitFormHandler = () => {
 		// Check if password field have changed? then validate.

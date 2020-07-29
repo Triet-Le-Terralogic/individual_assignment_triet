@@ -19,6 +19,9 @@ export const initStateCreator = (dataArr) => {
 
 // Form input validator
 export const inputValidator = (userInput = "", inputType = "") => {
+	if (userInput.length === 0) {
+		return "";
+	}
 	let errMsg = "";
 	switch (inputType) {
 		case "email":
@@ -31,7 +34,7 @@ export const inputValidator = (userInput = "", inputType = "") => {
 		case "currentPassword":
 		case "newPassword":
 		case "confirmPassword":
-			if (!validatePassword(userInput) && userInput.length > 0) {
+			if (!validatePassword(userInput)) {
 				errMsg = "Password length must greater than 8 character.";
 			}
 			break;
@@ -103,7 +106,7 @@ export const changePasswordValidator = (submitData) => {
 export const changeUserInfoValidator = (submitData) => {
 	const { email, name, phone, avatar } = submitData;
 	let isValid = true;
-	if (validateEmail(email) && isValid) {
+	if (!validateEmail(email) && isValid) {
 		isValid = false;
 	}
 	if (!validateName(name) && isValid) {
@@ -112,7 +115,10 @@ export const changeUserInfoValidator = (submitData) => {
 	if (!validatePhone(phone) && isValid) {
 		isValid = false;
 	}
-	if (!avatar.includes("http://api.terralogic.ngrok.io/")) return isValid;
+	if (!avatar.includes("http://api.terralogic.ngrok.io/")) {
+		isValid = false;
+	}
+	return isValid;
 };
 
 const validatePassword = (password) => {

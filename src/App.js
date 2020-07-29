@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actionCreators from "./store/actions";
+import { useDeepCompareEffect } from "use-deep-compare";
 
 import { PublicRoute, PrivateRoute } from "./hoc";
 import Login from "./pages/Login";
@@ -11,16 +12,16 @@ import ErrorPage from "./components/ErrorPage";
 import Modal from "./layouts/Modal";
 
 function App(props) {
-	const { isAuth, serverMsg } = props;
+	const { isAuth, serverMsg, userInfo } = props;
 	const mounted = useRef(false);
 	const [modalState, setModalState] = useState(false);
-	useEffect(() => {
+	useDeepCompareEffect(() => {
 		if (mounted.current && serverMsg.length) {
 			setModalState(true);
 		} else {
 			mounted.current = true;
 		}
-	}, [serverMsg]);
+	}, [serverMsg, userInfo]);
 	return (
 		<>
 			<Modal
@@ -77,7 +78,8 @@ const mapDispatchToProps = (dispatch) => {
 			dispatch(actionCreators.changePassword(changePassData)),
 		onUploadAvatarHandler: (fileData) =>
 			dispatch(actionCreators.uploadAvatar(fileData)),
-		onUploadUserInfo: (userData) => dispatch(actionCreators.uploadUserInfo),
+		onUploadUserInfo: (userData) =>
+			dispatch(actionCreators.updateUserInfo(userData)),
 	};
 };
 

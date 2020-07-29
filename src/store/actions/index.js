@@ -3,6 +3,6 @@ export {
 	postRegisterData,
 	changePassword,
 	uploadAvatar,
-	uploadUserInfo,
+	updateUserInfo,
 } from "./asyncActions";
 export { onLoginSuccess, onRegisterSuccess, onLogoutHandler } from "./actions";
