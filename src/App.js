@@ -10,9 +10,16 @@ import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import ErrorPage from "./components/ErrorPage";
 import Modal from "./layouts/Modal";
+import LoadingSpinner from "./components/LoadingSpinner";
 
 function App(props) {
-	const { isAuth, userInfo, modalData, onTriggerNotificationHandler } = props;
+	const {
+		isAuth,
+		userInfo,
+		modalData,
+		onTriggerNotificationHandler,
+		loading,
+	} = props;
 	const mounted = useRef(false);
 	const [modalState, setModalState] = useState(false);
 
@@ -39,6 +46,7 @@ function App(props) {
 
 	return (
 		<>
+			{loading && <LoadingSpinner />}
 			<Modal
 				modalHeader={modalData.modalHeader}
 				modalBody={modalData.msg}
@@ -80,6 +88,7 @@ const mapStateToProps = (state) => {
 		token: state.token,
 		msg: state.modalData.msg,
 		modalData: state.modalData,
+		loading: state.loading,
 	};
 };
 

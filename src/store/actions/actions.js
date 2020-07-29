@@ -46,6 +46,7 @@ export const onLogoutHandler = () => {
 			overall: {
 				isAuth: false,
 				token: "",
+				loading: false,
 			},
 			modalData: {
 				modalHeader: "Notification",
@@ -129,6 +130,15 @@ export const onNotificationTrigger = (triggerData) => {
 		payload: {
 			msg: body,
 			header: header,
+		},
+	};
+};
+
+export const onLoadingTrigger = (isLoading) => {
+	return {
+		type: actionTypes.TRIGGER_LOADING,
+		payload: {
+			loading: isLoading,
 		},
 	};
 };

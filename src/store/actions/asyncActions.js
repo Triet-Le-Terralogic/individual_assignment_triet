@@ -3,6 +3,7 @@ import * as actions from "./actions";
 
 export const postRegisterData = (registerData) => {
 	return async (dispatch) => {
+		dispatch(actions.onLoadingTrigger(true));
 		try {
 			const respData = await axios.request({
 				method: "POST",
@@ -16,11 +17,13 @@ export const postRegisterData = (registerData) => {
 		} catch (error) {
 			dispatch(actions.onRegisterFail());
 		}
+		dispatch(actions.onLoadingTrigger(false));
 	};
 };
 
 export const postLoginData = (loginData) => {
 	return async (dispatch) => {
+		dispatch(actions.onLoadingTrigger(true));
 		try {
 			const respData = await axios.request({
 				method: "POST",
@@ -34,6 +37,7 @@ export const postLoginData = (loginData) => {
 		} catch (error) {
 			dispatch(actions.onLoginFail());
 		}
+		dispatch(actions.onLoadingTrigger(false));
 	};
 };
 
@@ -43,6 +47,7 @@ export const changePassword = ({ passwordData, token }) => {
 			password: passwordData.newPassword,
 			currentPassword: passwordData.currentPassword,
 		};
+		dispatch(actions.onLoadingTrigger(true));
 		try {
 			const respData = await axios.request({
 				method: "POST",
@@ -58,6 +63,7 @@ export const changePassword = ({ passwordData, token }) => {
 		} catch (error) {
 			dispatch(actions.onChangePassFail());
 		}
+		dispatch(actions.onLoadingTrigger(false));
 	};
 };
 
@@ -67,6 +73,7 @@ export const uploadAvatar = ({ avatarFile, token }) => {
 		dataFile.append("key", "image");
 		dataFile.append("type", "file");
 		dataFile.append("src", avatarFile);
+		dispatch(actions.onLoadingTrigger(true));
 
 		try {
 			const respData = await axios.request({
@@ -85,11 +92,13 @@ export const uploadAvatar = ({ avatarFile, token }) => {
 		} catch (error) {
 			dispatch(actions.onUploadAvatarFail());
 		}
+		dispatch(actions.onLoadingTrigger(false));
 	};
 };
 
 export const updateUserInfo = ({ dataUpload, token }) => {
 	return async (dispatch) => {
+		dispatch(actions.onLoadingTrigger(true));
 		try {
 			const respData = await axios.request({
 				method: "PATCH",
@@ -100,12 +109,12 @@ export const updateUserInfo = ({ dataUpload, token }) => {
 				url: "http://api.terralogic.ngrok.io/api/update",
 				data: dataUpload,
 			});
-			console.log(respData.data);
 
 			dispatch(actions.onUpdateUserInfoSuccess(respData.data));
 		} catch (error) {
 			console.log(error);
 			dispatch(actions.onUpdateUserInfoFail());
 		}
+		dispatch(actions.onLoadingTrigger(false));
 	};
 };

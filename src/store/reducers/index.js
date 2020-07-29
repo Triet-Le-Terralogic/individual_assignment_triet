@@ -13,6 +13,7 @@ const initialState = {
 		phone: "",
 	},
 	token: "",
+	loading: false,
 };
 const reducer = (state = initialState, action) => {
 	switch (action.type) {
@@ -104,6 +105,12 @@ const reducer = (state = initialState, action) => {
 				},
 			};
 		}
+
+		case actionTypes.TRIGGER_LOADING:
+			return {
+				...state,
+				loading: action.payload.loading,
+			};
 
 		default:
 			return state;
