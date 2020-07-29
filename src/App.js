@@ -12,21 +12,21 @@ import ErrorPage from "./components/ErrorPage";
 import Modal from "./layouts/Modal";
 
 function App(props) {
-	const { isAuth, serverMsg, userInfo } = props;
+	const { isAuth, userInfo, modalData } = props;
 	const mounted = useRef(false);
 	const [modalState, setModalState] = useState(false);
 	useDeepCompareEffect(() => {
-		if (mounted.current && serverMsg.length) {
+		if (mounted.current && modalData.msg.length) {
 			setModalState(true);
 		} else {
 			mounted.current = true;
 		}
-	}, [serverMsg, userInfo]);
+	}, [modalData, userInfo]);
 	return (
 		<>
 			<Modal
-				modalHeader="Notification"
-				modalBody={serverMsg}
+				modalHeader={modalData.modalHeader}
+				modalBody={modalData.msg}
 				modalType="nofi"
 				isShow={modalState}
 				denyFunc={() => setModalState(false)}
@@ -63,7 +63,8 @@ const mapStateToProps = (state) => {
 		isAuth: state.isAuth,
 		userInfo: state.userInfo,
 		token: state.token,
-		serverMsg: state.serverMsg,
+		msg: state.modalData.msg,
+		modalData: state.modalData,
 	};
 };
 
@@ -80,6 +81,9 @@ const mapDispatchToProps = (dispatch) => {
 			dispatch(actionCreators.uploadAvatar(fileData)),
 		onUploadUserInfo: (userData) =>
 			dispatch(actionCreators.updateUserInfo(userData)),
+		onTriggerNotificationHandler: (msg) => {
+			dispatch(actionCreators.onNotificationTrigger(msg));
+		},
 	};
 };
 

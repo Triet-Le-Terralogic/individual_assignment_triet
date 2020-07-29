@@ -8,7 +8,7 @@ export default function AdminLayout(props) {
 				headerTitle="My Profile"
 				headerInfo="Manage your profile and contact infomation."
 			/>
-			<div>{props.children}</div>
+			<>{props.children}</>
 		</div>
 	);
 }

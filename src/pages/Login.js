@@ -5,20 +5,27 @@ import GuessLayout from "../layouts/GuessLayout";
 import FormWrapper from "../components/FormWrapper";
 import ButtonListWrapper from "../components/ButtonListWrapper";
 import CheckBox from "../components/CheckBox";
-import Modal from "../layouts/Modal";
 
 import Logo from "../components/Logo";
 import emaiIcon from "../assets/img/email_icon.svg";
 import keyIcon from "../assets/img/key_icon.svg";
 import { transformToArr, initStateCreator, loginValidator } from "../helper";
 
-const Login = ({ onLoginHandler = () => {}, history = {} }) => {
+const Login = ({
+	onLoginHandler = () => {},
+	history = {},
+	onTriggerNotificationHandler = () => {},
+}) => {
 	const onSubmitFormHandler = () => {
 		if (loginValidator(formInputstate)) {
 			onLoginHandler(formInputstate);
 		} else {
 			// else popup invalid form notification
-			setModalState(true);
+			const triggerData = {
+				header: "Login failed!",
+				body: "Email or Password are invalid.",
+			};
+			onTriggerNotificationHandler(triggerData);
 		}
 	};
 
@@ -73,7 +80,6 @@ const Login = ({ onLoginHandler = () => {}, history = {} }) => {
 	// Create dynamic initState
 	const initialState = initStateCreator(transformToArr(formData));
 	const [formInputstate, setFormInputState] = useState(initialState);
-	const [modalState, setModalState] = useState(false);
 
 	// set form's input state
 	const onUserInputHandler = (val, name) => {
@@ -84,41 +90,32 @@ const Login = ({ onLoginHandler = () => {}, history = {} }) => {
 	};
 
 	return (
-		<>
-			<Modal
-				modalHeader="Login failed"
-				modalBody="Email or password are invalid"
-				modalType="nofi"
-				isShow={modalState}
-				denyFunc={() => setModalState(false)}
-				acceptFunc={() => setModalState(false)}
-			/>
-			<GuessLayout>
-				<div className="Login container text-center text-lg-left">
-					<Logo />
-					<span className="Login__slogan">
-						Start your personal photo experience
-					</span>
-					<FormWrapper
-						onUserInputHandler={onUserInputHandler}
-						formTitle="Login your account"
-						formData={transformToArr(formData)}
-						formInputstate={formInputstate}
-					/>
-					<ButtonListWrapper
-						buttonData={transformToArr(buttonData)}
-						pageType="guess"
-					/>
-					<CheckBox checkBoxTitle="Remember password" />
-				</div>
-			</GuessLayout>
-		</>
+		<GuessLayout>
+			<div className="Login container text-center text-lg-left">
+				<Logo />
+				<span className="Login__slogan">
+					Start your personal photo experience
+				</span>
+				<FormWrapper
+					onUserInputHandler={onUserInputHandler}
+					formTitle="Login your account"
+					formData={transformToArr(formData)}
+					formInputstate={formInputstate}
+				/>
+				<ButtonListWrapper
+					buttonData={transformToArr(buttonData)}
+					pageType="guess"
+				/>
+				<CheckBox checkBoxTitle="Remember password" />
+			</div>
+		</GuessLayout>
 	);
 };
 
 Login.propTypes = {
 	onLoginHandler: PropTypes.func,
 	history: PropTypes.object,
+	onTriggerNotificationHandler: PropTypes.func,
 };
 
 export default Login;

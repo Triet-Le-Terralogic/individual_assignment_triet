@@ -7,8 +7,6 @@ import AvatarAdmin from "../components/AvatarAdmin";
 import AdminSection from "../components/AdminSection";
 import trumpAvatar from "../assets/img/test_avatar.jpg";
 import ButtonListWrapper from "../components/ButtonListWrapper";
-import Modal from "../layouts/Modal";
-// import { isEqual } from "lodash";
 import isEqual from "fast-deep-equal";
 
 import {
@@ -24,6 +22,7 @@ export default function Profile({
 	onChangePasswordHandler = () => {},
 	onUploadAvatarHandler = () => {},
 	onUploadUserInfo = () => {},
+	onTriggerNotificationHandler = () => {},
 	userInfo = {},
 	token = "",
 }) {
@@ -123,6 +122,11 @@ export default function Profile({
 	}, [userInfoState, formChangePasswordState, userInfo]);
 
 	const onSubmitFormHandler = () => {
+		let isTriggered = 0;
+		let triggerData = {
+			header: "",
+			body: "",
+		};
 		// Check if password field have changed? then validate.
 		if (!isEqual(formChangePasswordState, changePasswordSnapShot.current)) {
 			if (changePasswordValidator(formChangePasswordState)) {
@@ -132,8 +136,11 @@ export default function Profile({
 				};
 				onChangePasswordHandler(changePassData);
 			} else {
-				// else popup invalid form
-				setChangePasswordModalState(true);
+				// Popup invalid form
+				triggerData.header = "Change password failed!";
+				triggerData.body =
+					"Invalid password or confirm password does not match.";
+				isTriggered++;
 			}
 		}
 
@@ -146,8 +153,18 @@ export default function Profile({
 				onUploadUserInfo(uploadUserInfoData);
 			} else {
 				// Popup invlaid form
-				console.log("invalid form!");
+				triggerData.header = "Change prifile failed!";
+				triggerData.body = "Invalid name/email/phone.";
+				isTriggered++;
 			}
+		}
+
+		if (isTriggered === 2) {
+			triggerData.header = "Notification!";
+			triggerData.body = "Invalid password/name/email/phone.";
+			onTriggerNotificationHandler(triggerData);
+		} else if (isTriggered === 1) {
+			onTriggerNotificationHandler(triggerData);
 		}
 	};
 
@@ -172,10 +189,6 @@ export default function Profile({
 			},
 		},
 	};
-
-	const [changePasswordModalState, setChangePasswordModalState] = useState(
-		false
-	);
 
 	// Set form's input state
 	const onUserChangePasswordHandler = (val, name) => {
@@ -215,37 +228,26 @@ export default function Profile({
 		/>
 	);
 	return (
-		<>
-			<Modal
-				modalHeader="Change password failed"
-				modalBody="Invalid password/Confirm password does not match!"
-				modalType="nofi"
-				isShow={changePasswordModalState}
-				denyFunc={() => setChangePasswordModalState(false)}
-				acceptFunc={() => setChangePasswordModalState(false)}
-			/>
-
-			<AdminLayout>
-				<div className="Profile container text-center text-lg-left">
-					<AdminSection
-						onUserInputHandler={onUserChangeInfoHandler}
-						formInputstate={userInfoState}
-						sectionHeader={avatarAdmin}
-						sectionData={transformToArr(infoFormData)}
-					/>
-					<AdminSection
-						onUserInputHandler={onUserChangePasswordHandler}
-						formInputstate={formChangePasswordState}
-						sectionHeader="Change Password"
-						sectionData={transformToArr(changePasswordFormData)}
-					/>
-					<ButtonListWrapper
-						buttonData={transformToArr(buttonData)}
-						pageType="admin"
-					/>
-				</div>
-			</AdminLayout>
-		</>
+		<AdminLayout>
+			<div className="Profile container text-center text-lg-left">
+				<AdminSection
+					onUserInputHandler={onUserChangeInfoHandler}
+					formInputstate={userInfoState}
+					sectionHeader={avatarAdmin}
+					sectionData={transformToArr(infoFormData)}
+				/>
+				<AdminSection
+					onUserInputHandler={onUserChangePasswordHandler}
+					formInputstate={formChangePasswordState}
+					sectionHeader="Change Password"
+					sectionData={transformToArr(changePasswordFormData)}
+				/>
+				<ButtonListWrapper
+					buttonData={transformToArr(buttonData)}
+					pageType="admin"
+				/>
+			</div>
+		</AdminLayout>
 	);
 }
 
@@ -254,6 +256,7 @@ Profile.propType = {
 	onChangePasswordHandler: PropTypes.func,
 	onUploadAvatarHandler: PropTypes.func,
 	onUploadUserInfo: PropTypes.func,
+	onTriggerNotificationHandler: PropTypes.func,
 	userInfo: PropTypes.object,
 	token: PropTypes.string,
 };

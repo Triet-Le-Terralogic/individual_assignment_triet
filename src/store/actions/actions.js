@@ -45,8 +45,11 @@ export const onLogoutHandler = () => {
 		payload: {
 			overall: {
 				isAuth: false,
-				serverMsg: "",
 				token: "",
+			},
+			modalData: {
+				modalHeader: "Notification",
+				msg: "",
 			},
 			userInfo: {
 				avatar: "",
@@ -115,6 +118,17 @@ export const onUpdateUserInfoFail = () => {
 		type: actionTypes.UPDATE_USERINFO_FAIL,
 		payload: {
 			msg: "Unable to update user infomation, try again later!",
+		},
+	};
+};
+
+export const onNotificationTrigger = (triggerData) => {
+	const { header, body } = triggerData;
+	return {
+		type: actionTypes.TRIGGER_NOTIFICATION,
+		payload: {
+			msg: body,
+			header: header,
 		},
 	};
 };

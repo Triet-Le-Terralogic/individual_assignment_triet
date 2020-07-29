@@ -2,7 +2,10 @@ import { actionTypes } from "../actions/actionTypes";
 
 const initialState = {
 	isAuth: false,
-	serverMsg: "",
+	modalData: {
+		modalHeader: "Notification",
+		msg: "",
+	},
 	userInfo: {
 		avatar: "",
 		email: "",
@@ -17,8 +20,12 @@ const reducer = (state = initialState, action) => {
 			return {
 				...state,
 				isAuth: true,
-				serverMsg: action.payload.msg,
 				token: action.payload.token,
+				modalData: {
+					...state.modalData,
+					modalHeader: "Notification",
+					msg: action.payload.msg,
+				},
 				userInfo: {
 					...state.userInfo,
 					avatar: action.payload.userInfo.avatar
@@ -31,10 +38,6 @@ const reducer = (state = initialState, action) => {
 			};
 
 		case actionTypes.LOGIN_FAIL:
-			return {
-				...state,
-				serverMsg: action.payload.msg,
-			};
 		case actionTypes.REGISTER_SUCCESS:
 		case actionTypes.REGISTER_FAIL:
 		case actionTypes.CHANGEPASS_SUCCESS:
@@ -43,13 +46,21 @@ const reducer = (state = initialState, action) => {
 		case actionTypes.UPDATE_USERINFO_FAIL:
 			return {
 				...state,
-				serverMsg: action.payload.msg,
+				modalData: {
+					...state.modalData,
+					modalHeader: "Notification",
+					msg: action.payload.msg,
+				},
 			};
 
 		case actionTypes.LOGOUT:
 			return {
 				...state,
 				...action.payload.overall,
+				modalData: {
+					...state.modalData,
+					...action.payload.modalData,
+				},
 				userInfo: {
 					...state.userInfo,
 					...action.payload.userInfo,
@@ -58,7 +69,11 @@ const reducer = (state = initialState, action) => {
 		case actionTypes.UPLOAD_AVATAR_SUCCESS:
 			return {
 				...state,
-				serverMsg: action.payload.msg,
+				modalData: {
+					...state.modalData,
+					msg: action.payload.msg,
+					modalHeader: "Avatar Changed",
+				},
 				userInfo: {
 					...state.userInfo,
 					avatar: action.payload.avatar,
@@ -68,12 +83,27 @@ const reducer = (state = initialState, action) => {
 		case actionTypes.UPDATE_USERINFO_SUCCESS:
 			return {
 				...state,
-				serverMsg: action.payload.msg,
+				modalData: {
+					...state.modalData,
+					msg: action.payload.msg,
+					modalHeader: "Profile Updated",
+				},
 				userInfo: {
 					...state.userInfo,
 					...action.payload.userInfo,
 				},
 			};
+
+		case actionTypes.TRIGGER_NOTIFICATION: {
+			return {
+				...state,
+				modalData: {
+					...state.modalData,
+					msg: action.payload.msg,
+					modalHeader: action.payload.header,
+				},
+			};
+		}
 
 		default:
 			return state;
