@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
-import eyeIcon from "../assets/img/eye_icon.svg";
-import { inputValidator } from "../helper";
+import eyeIcon from "../../assets/img/eye_icon.svg";
+import { inputValidator } from "../../helper";
 
 export default function FormCell({
 	onUserInputHandler = () => {},

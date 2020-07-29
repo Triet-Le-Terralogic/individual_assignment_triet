@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import penIcon from "../assets/img/pen_icon.svg";
+import penIcon from "../../assets/img/pen_icon.svg";
 
 export default function AvatarAdmin({
 	avatarTitle = "default",

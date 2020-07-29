@@ -1,5 +1,5 @@
 import React from "react";
-import FormWrapper from "./FormWrapper";
+import FormWrapper from "../FormWrapper";
 import PropTypes from "prop-types";
 
 export default function AdminSection({

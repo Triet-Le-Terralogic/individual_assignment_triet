@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import FormCell from "./FormCell";
+import FormCell from "../FormCell";
 
 export default function FormWrapper({
 	onUserInputHandler = () => {},
