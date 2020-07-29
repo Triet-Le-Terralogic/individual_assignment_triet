@@ -43,6 +43,12 @@ code {
 			width: 60%;
 		}
 	}
+
+	.Guess-layout {
+		& > .row {
+			margin: 0;
+		}
+	}
 }
 
 @media only screen and (max-width: map-get($grid-breakpoints, "md" )) {

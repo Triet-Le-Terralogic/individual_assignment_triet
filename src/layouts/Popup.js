@@ -3,7 +3,9 @@ import PropTypes from "prop-types";
 
 export default function Popup({ isShow = false, children }) {
 	return (
-		<div className={isShow ? "Popup" : "Popup Popup--hide"}>{children}</div>
+		<div className={`Popup ${isShow ? "Popup--show" : "Popup--hide"}`}>
+			{children}
+		</div>
 	);
 }
 

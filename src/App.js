@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actionCreators from "./store/actions";
@@ -12,16 +12,31 @@ import ErrorPage from "./components/ErrorPage";
 import Modal from "./layouts/Modal";
 
 function App(props) {
-	const { isAuth, userInfo, modalData } = props;
+	const { isAuth, userInfo, modalData, onTriggerNotificationHandler } = props;
 	const mounted = useRef(false);
 	const [modalState, setModalState] = useState(false);
+
 	useDeepCompareEffect(() => {
 		if (mounted.current && modalData.msg.length) {
 			setModalState(true);
 		} else {
 			mounted.current = true;
+			setModalState(false);
 		}
 	}, [modalData, userInfo]);
+
+	const onResetModal = useCallback(() => {
+		const reset = {
+			header: "",
+			body: "",
+		};
+		onTriggerNotificationHandler(reset);
+	}, [onTriggerNotificationHandler]);
+
+	useEffect(() => {
+		onResetModal();
+	}, [onResetModal]);
+
 	return (
 		<>
 			<Modal
@@ -29,8 +44,8 @@ function App(props) {
 				modalBody={modalData.msg}
 				modalType="nofi"
 				isShow={modalState}
-				denyFunc={() => setModalState(false)}
-				acceptFunc={() => setModalState(false)}
+				denyFunc={() => onResetModal()}
+				acceptFunc={() => onResetModal()}
 			/>
 			<Switch>
 				<PublicRoute

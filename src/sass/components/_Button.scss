@@ -32,8 +32,9 @@
 	&-modal {
 		height: 40px;
 		padding: 0px 30px;
-		border-width: $border-width-custom;
+		border: none;
 		margin-right: 15px;
+		text-transform: capitalize;
 
 		&--state-fulfill {
 			@include fill-button(true);
