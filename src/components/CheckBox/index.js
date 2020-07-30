@@ -12,5 +12,5 @@ export default function CheckBox({ checkBoxTitle = "Default" }) {
 }
 
 CheckBox.propTypes = {
-  checkBoxTitle: PropTypes.string.isRequired,
+  checkBoxTitle: PropTypes.string,
 };

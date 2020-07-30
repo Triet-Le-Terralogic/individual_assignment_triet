@@ -41,7 +41,7 @@ describe("<Button/> with props", () => {
   });
 
   it("should render correctly with passed props", () => {
-    expect(container.text()).toEqual("Click me");
+    expect(container.text()).toEqual(props.buttonTitle);
     expect(containerProps.className).toContain(
       "Button-admin Button-admin--state-empty"
     );
