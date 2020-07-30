@@ -36,7 +36,7 @@ describe("<CheckBox/> - no props", () => {
   });
 });
 
-describe("<Button/> with props", () => {
+describe("<CheckBox/> with props", () => {
   const wrapper = shallow(<CheckBox {...props} />);
   beforeEach(() => {
     container = wrapper.find("div").first();

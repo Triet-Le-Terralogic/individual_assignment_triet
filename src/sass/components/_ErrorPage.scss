@@ -1,0 +1,18 @@
+.Error-page {
+  height: 100vh;
+  width: 100vw;
+  text-align: center;
+  font-weight: bold;
+
+  &__header {
+    padding: 3rem 0;
+    margin: 1rem 0;
+    border: 2px solid $primary;
+    border-right: 0;
+    border-left: 0;
+
+    span {
+      font-size: 10rem;
+    }
+  }
+}
