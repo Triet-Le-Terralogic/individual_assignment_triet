@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<LoadingSpinner/> should render correctly 1`] = `
+<div
+  className="Loading-spinner"
+  data-test="spinner"
+>
+  <div
+    className="Loading-spinner__item"
+    data-test="spinner-item"
+  >
+    <div />
+    <div />
+  </div>
+</div>
+`;

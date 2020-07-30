@@ -1,3 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Logo/> should render correctly 1`] = `ShallowWrapper {}`;
+exports[`<Logo/> should render correctly 1`] = `
+<div
+  className="Logo text-center text-lg-left"
+>
+  <img
+    alt="Brand logo"
+    src="brand_logo.svg"
+  />
+</div>
+`;
