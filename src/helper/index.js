@@ -95,8 +95,10 @@ export const registerValidator = ({
   return isValid;
 };
 
-export const changePasswordValidator = (submitData) => {
-  const { newPassword, confirmPassword } = submitData;
+export const changePasswordValidator = ({
+  newPassword = "",
+  confirmPassword = "",
+}) => {
   let isValid = true;
   if (!validatePassword(newPassword) && isValid) {
     isValid = false;
@@ -107,8 +109,12 @@ export const changePasswordValidator = (submitData) => {
   return isValid;
 };
 
-export const changeUserInfoValidator = (submitData) => {
-  const { email, name, phone, avatar } = submitData;
+export const changeUserInfoValidator = ({
+  email = "",
+  name = "",
+  phone = "",
+  avatar = "",
+}) => {
   let isValid = true;
   if (!validateEmail(email) && isValid) {
     isValid = false;

@@ -81,8 +81,114 @@ const invalidLoginCase = [
   },
 ];
 
+const validRegisterCase = [
+  {
+    email: "anonymous@terralogic.com",
+    password: "@Triet123",
+    confirmPassword: "@Triet123",
+    name: "anonymous",
+    phone: "0987654321",
+  },
+];
+const invalidRegisterCase = [
+  {
+    email: "anonymousterralogic.com",
+    password: "@Triet123",
+    confirmPassword: "@Triet123",
+    name: "anonymous",
+    phone: "0987654321",
+  },
+  {
+    email: "anonymous@terralogic.com",
+    password: "Triet123",
+    confirmPassword: "Triet123",
+    name: "anonymous",
+    phone: "0987654321",
+  },
+  {
+    email: "anonymous@terralogic.com",
+    password: "@Triet1234",
+    confirmPassword: "@Triet123",
+    name: "anonymous",
+    phone: "0987654321",
+  },
+  {
+    email: "anonymous@terralogic.com",
+    password: "@Triet123",
+    confirmPassword: "@Triet123",
+    name: "*anonymous",
+    phone: "0987654321",
+  },
+  {
+    email: "anonymous@terralogic.com",
+    password: "@Triet123",
+    confirmPassword: "@Triet123",
+    name: "*anonymous",
+    phone: "09876431",
+  },
+];
+
+const validChangePasswordCase = [
+  {
+    newPassword: "@Triet123",
+    confirmPassword: "@Triet123",
+  },
+];
+const invalidChangePasswordCase = [
+  {
+    newPassword: "Triet123",
+    confirmPassword: "Triet123",
+  },
+  {
+    newPassword: "@Triet123",
+    confirmPassword: "Triet123",
+  },
+];
+
+const validChangeUserInfoCase = [
+  {
+    email: "anonymous@terralogic.com",
+    name: "anonymous",
+    phone: "0987654321",
+    avatar: "http://api.terralogic.ngrok.io/someimage.svg",
+  },
+];
+const invalidChangeUserInfoCase = [
+  {
+    email: "anonymousterralogic.com",
+    name: "anonymous",
+    phone: "0987654321",
+    avatar: "http://api.terralogic.ngrok.io/someimage.svg",
+  },
+  {
+    email: "anonymous@terralogic.com",
+    name: "*anonymous",
+    phone: "0987654321",
+    avatar: "http://api.terralogic.ngrok.io/someimage.svg",
+  },
+  {
+    email: "anonymous@terralogic.com",
+    name: "anonymous",
+    phone: "09876521",
+    avatar: "http://api.terralogic.ngrok.io/someimage.svg",
+  },
+  {
+    email: "anonymous@terralogic.com",
+    name: "anonymous",
+    phone: "0987654321",
+    avatar: "http://api.terralogic/someimage.svg",
+  },
+];
+
 describe("Helper.js", () => {
-  const { inputValidator, loginValidator } = helper;
+  const {
+    inputValidator,
+    loginValidator,
+    registerValidator,
+    changePasswordValidator,
+    changeUserInfoValidator,
+    uploadAvatarValidator,
+  } = helper;
 
   it("inputValidator", () => {
     validInputCase.map((testCase) => {
@@ -108,5 +214,51 @@ describe("Helper.js", () => {
     });
 
     expect(loginValidator({})).toBeFalsy();
+  });
+
+  it("registerValidator", () => {
+    validRegisterCase.map((testCase) => {
+      expect(registerValidator(testCase)).toBeTruthy();
+    });
+
+    invalidRegisterCase.map((testCase) => {
+      expect(registerValidator(testCase)).toBeFalsy();
+    });
+
+    expect(registerValidator({})).toBeFalsy();
+  });
+
+  it("changePasswordValidator", () => {
+    validChangePasswordCase.map((testCase) => {
+      expect(changePasswordValidator(testCase)).toBeTruthy();
+    });
+
+    invalidChangePasswordCase.map((testCase) => {
+      expect(changePasswordValidator(testCase)).toBeFalsy();
+    });
+
+    expect(changePasswordValidator({})).toBeFalsy();
+  });
+
+  it("changeUserInfoValidator", () => {
+    validChangeUserInfoCase.map((testCase) => {
+      expect(changeUserInfoValidator(testCase)).toBeTruthy();
+    });
+
+    invalidChangeUserInfoCase.map((testCase) => {
+      expect(changeUserInfoValidator(testCase)).toBeFalsy();
+    });
+
+    expect(helper.changeUserInfoValidator({})).toBeFalsy();
+  });
+
+  it("uploadAvatarValidator", () => {
+    expect(uploadAvatarValidator("image.svg")).toBeTruthy();
+    expect(uploadAvatarValidator("image.jpg")).toBeTruthy();
+    expect(uploadAvatarValidator("image.jpeg")).toBeTruthy();
+    expect(uploadAvatarValidator("image.png")).toBeTruthy();
+    expect(uploadAvatarValidator("image.gif")).toBeTruthy();
+
+    expect(uploadAvatarValidator("image.text")).toBeFalsy();
   });
 });
