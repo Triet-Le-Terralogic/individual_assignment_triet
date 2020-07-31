@@ -4,7 +4,7 @@ import FormCell from "../FormCell";
 
 export default function FormWrapper({
   onUserInputHandler = () => {},
-  formInputstate = {},
+  formInputState = {},
   formTitle = "",
   formData = [],
 }) {
@@ -15,7 +15,7 @@ export default function FormWrapper({
       customStyle={cell.customStyle}
       pageType={cell.pageType}
       inputID={cell.id}
-      inputValue={formInputstate[cell.id]}
+      inputValue={formInputState[cell.id]}
       inputType={cell.config.type}
       inputLabel={cell.config.label}
       inputPlaceholder={cell.config.placeholder}
@@ -39,7 +39,7 @@ export default function FormWrapper({
 
 FormWrapper.propTypes = {
   onUserInputHandler: PropTypes.func,
-  formInputstate: PropTypes.object,
+  formInputState: PropTypes.object,
   formTitle: PropTypes.string,
   formData: PropTypes.array,
 };

@@ -4,9 +4,20 @@ import { shallow } from "enzyme";
 
 const props = {
   onUserInputHandler: jest.fn,
-  formInputstate: { test: "test" },
+  formInputstate: { Email: "test" },
   formTitle: "",
-  formData: ["a", "b", "c"],
+  formData: [
+    {
+      pageType: "guess",
+      id: "Email",
+      config: {
+        icon: "test.svg",
+        label: "Email",
+        placeholder: "Enter your email",
+        type: "email",
+      },
+    },
+  ],
 };
 let container, containerProps, title, formListWrapper, formList;
 
@@ -37,7 +48,7 @@ describe("<FormWrapper/> - no props", () => {
   });
 });
 
-describe.skip("<FormWrapper /> with props", () => {
+describe("<FormWrapper /> with props", () => {
   const wrapper = shallow(<FormWrapper {...props} />);
   beforeEach(() => {
     container = wrapper.find("div").first();
@@ -49,6 +60,6 @@ describe.skip("<FormWrapper /> with props", () => {
 
   it("should render correctly with passed props", () => {
     expect(title.text()).toEqual(props.formTitle);
-    expect(formList.find("FormCell")).toHaveLength(3);
+    expect(formList.find("FormCell")).toHaveLength(props.formData.length);
   });
 });
