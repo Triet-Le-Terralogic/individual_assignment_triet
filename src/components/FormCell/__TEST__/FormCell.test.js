@@ -1,7 +1,6 @@
 import React from "react";
 import FormCell from "../index";
 import { shallow, mount } from "enzyme";
-import { wrap } from "lodash";
 
 const props = {
   onUserInputHandler: jest.fn,
