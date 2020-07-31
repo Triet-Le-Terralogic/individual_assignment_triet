@@ -28,7 +28,7 @@ export default function FormCell({
     if (mounted.current) {
       // Similar to componentDidUpdate
       validateTimeout = setTimeout(() => {
-        setErrMsg(inputValidator(inputValue, inputID));
+        setErrMsg(inputValidator({ inputValue, inputID }));
       }, 1000);
     } else {
       mounted.current = true;
