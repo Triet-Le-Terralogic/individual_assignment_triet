@@ -48,8 +48,8 @@ describe("<Modal/> - no props", () => {
     modalFooter = container.find("[data-test='modal-footer']");
 
     expect(container.props().isShow).toBeTruthy();
-    expect(modalHeader.text()).toEqual("test header");
-    expect(modalBody.text()).toEqual("test body");
+    expect(modalHeader.text()).toEqual(props.modalHeader);
+    expect(modalBody.text()).toEqual(props.modalBody);
     expect(
       modalFooter.find("ButtonListWrapper").props().buttonData[1].config.title
     ).toEqual("save");
