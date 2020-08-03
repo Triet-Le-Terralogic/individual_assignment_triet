@@ -17,6 +17,27 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+@media only screen and (max-width: 1400px) {
+  .Guess-layout {
+    & > .row {
+      margin: 40px 0;
+    }
+
+    &__bitmap {
+      img {
+        max-width: 530px;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: map-get($grid-breakpoints, "xl" )-1) and (max-width: 1399px) {
+  .Guess-layout__bitmap {
+    img {
+      margin-left: 50px;
+    }
+  }
+}
 
 @media only screen and (max-width: map-get($grid-breakpoints, "lg" )-1) {
   .Form-wrapper {
