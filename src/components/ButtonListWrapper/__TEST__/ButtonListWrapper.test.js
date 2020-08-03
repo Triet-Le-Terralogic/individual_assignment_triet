@@ -40,7 +40,7 @@ describe("<ButtonListWrapper/> - no props", () => {
     containerProps = container.props();
   });
 
-  it("should render correctly with defautl props ", () => {
+  it("should render correctly with default props ", () => {
     expect(containerProps.className).toContain(
       "Button-list-wrapper Button-list-wrapper-guess"
     );

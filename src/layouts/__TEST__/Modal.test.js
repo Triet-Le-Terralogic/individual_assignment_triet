@@ -19,7 +19,7 @@ it("should render without crash", () => {
 });
 
 describe("<Modal/> - no props", () => {
-  it("should render correctly with defautl props ", () => {
+  it("should render correctly with default props ", () => {
     const wrapper = shallow(<Modal />);
     container = wrapper.find("Popup");
     modalWrapper = container.find("[data-test='modal-wrapper']");

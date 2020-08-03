@@ -35,7 +35,7 @@ describe("<FormWrapper/> - no props", () => {
     formList = container.find("[data-test='form-list']");
   });
 
-  it("should render correctly with defautl props ", () => {
+  it("should render correctly with default props ", () => {
     expect(containerProps.className).toContain("Form-wrapper");
     expect(title).toHaveLength(1);
     expect(title.text()).toEqual("");

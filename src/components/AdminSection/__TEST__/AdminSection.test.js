@@ -24,7 +24,7 @@ describe("<AdminSection /> - no props", () => {
     formList = wrapper.find("[data-test='section-form']");
   });
 
-  it("should render correctly with defautl props ", () => {
+  it("should render correctly with default props ", () => {
     expect(containerProps.className).toContain("Admin-section");
     expect(header.props().className).toContain("Admin-section__header--color");
     expect(header.text()).toEqual("default");

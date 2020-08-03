@@ -23,7 +23,7 @@ describe("<Button/> - no props", () => {
     containerProps = container.props();
   });
 
-  it("should render correctly with defautl props ", () => {
+  it("should render correctly with default props ", () => {
     expect(container.text()).toEqual("Click!");
     expect(containerProps.className).toContain(
       "Button-guess Button-guess--state-fulfill"

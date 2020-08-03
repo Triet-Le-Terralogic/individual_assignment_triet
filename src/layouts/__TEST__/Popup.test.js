@@ -12,7 +12,7 @@ it("should render without crash", () => {
 });
 
 describe("<Popup/> - no props", () => {
-  it("should render correctly with defautl props ", () => {
+  it("should render correctly with default props ", () => {
     const wrapper = shallow(<Popup />);
     expect(wrapper.props().className).toContain("Popup Popup--hide");
     expect(wrapper.props().children).toBeUndefined();

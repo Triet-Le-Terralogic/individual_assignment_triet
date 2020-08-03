@@ -41,7 +41,7 @@ describe("<FormCell/> - no props", () => {
     eyeIcon = container.find("[data-test='eye-icon']");
   });
 
-  it("should render correctly with defautl props ", () => {
+  it("should render correctly with default props ", () => {
     expect(containerProps.className).toContain("Form-cell Form-cell-guess");
     expect(eyeIconWrapper).toHaveLength(0);
     expect(leftIconWrapper).toHaveLength(1);

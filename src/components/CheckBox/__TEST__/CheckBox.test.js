@@ -18,7 +18,7 @@ describe("<CheckBox/> - no props", () => {
     containerProps = container.props();
   });
 
-  it("should render correctly with defautl props ", () => {
+  it("should render correctly with default props ", () => {
     const checkBoxInPut = container.find("input");
     const checkBoxlabel = container.find("label");
     const checkBoxSpan = container.find("span");

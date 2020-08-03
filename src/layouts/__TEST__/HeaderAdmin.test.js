@@ -12,7 +12,7 @@ it("should render without crash", () => {
 });
 
 describe("<HeaderAdmin/> - no props", () => {
-  it("should render correctly with defautl props ", () => {
+  it("should render correctly with default props ", () => {
     const wrapper = shallow(<HeaderAdmin />);
     expect(wrapper.props().className).toContain("Header-admin");
     expect(wrapper.find("div")).toHaveLength(1);
