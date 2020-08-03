@@ -27,8 +27,11 @@ export default function FormCell({
     let validateTimeout;
     if (mounted.current) {
       // Similar to componentDidUpdate
+      console.log(typeof inputValue);
       validateTimeout = setTimeout(() => {
-        setErrMsg(inputValidator({ inputValue, inputID }));
+        setErrMsg(
+          inputValidator({ userInput: inputValue, inputType: inputID })
+        );
       }, 1000);
     } else {
       mounted.current = true;
