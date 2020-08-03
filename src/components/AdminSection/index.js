@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 export default function AdminSection({
   onUserInputHandler = () => {},
-  formInputstate = {},
+  formInputState = {},
   sectionHeader = "default",
   sectionData = [],
 }) {
@@ -22,7 +22,7 @@ export default function AdminSection({
         <FormWrapper
           formData={sectionData}
           onUserInputHandler={onUserInputHandler}
-          formInputstate={formInputstate}
+          formInputState={formInputState}
         />
       </div>
     </div>
@@ -31,7 +31,7 @@ export default function AdminSection({
 
 AdminSection.propTypes = {
   onUserInputHandler: PropTypes.func,
-  formInputstate: PropTypes.object,
+  formInputState: PropTypes.object,
   sectionHeader: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   sectionData: PropTypes.arrayOf(PropTypes.object),
 };

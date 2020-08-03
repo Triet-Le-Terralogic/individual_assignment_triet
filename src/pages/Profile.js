@@ -230,13 +230,13 @@ export default function Profile({
       <div className="Profile container text-center text-lg-left">
         <AdminSection
           onUserInputHandler={onUserChangeInfoHandler}
-          formInputstate={userInfoState}
+          formInputState={userInfoState}
           sectionHeader={avatarAdmin}
           sectionData={transformToArr(infoFormData)}
         />
         <AdminSection
           onUserInputHandler={onUserChangePasswordHandler}
-          formInputstate={formChangePasswordState}
+          formInputState={formChangePasswordState}
           sectionHeader="Change Password"
           sectionData={transformToArr(changePasswordFormData)}
         />
