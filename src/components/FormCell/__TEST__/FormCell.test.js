@@ -23,78 +23,99 @@ let container,
   leftIcon,
   input;
 
-it("should render without crash", () => {
-  shallow(<FormCell />);
+describe("<FormCell /> - render", () => {
+  it("should render without crash", () => {
+    shallow(<FormCell />);
+  });
+
+  describe("<FormCell/> - no props", () => {
+    const wrapper = shallow(<FormCell />);
+    beforeEach(() => {
+      container = wrapper.find("div").first();
+      containerProps = container.props();
+      label = container.find("label");
+      input = container.find("[data-test='input']");
+      leftIconWrapper = container.find("[data-test='left-icon-wrapper']");
+      leftIcon = container.find("[data-test='left-icon']");
+      eyeIconWrapper = container.find("[data-test='eye-icon-wrapper']");
+      eyeIcon = container.find("[data-test='eye-icon']");
+    });
+
+    it("should render component wrapper correctly with default props ", () => {
+      expect(containerProps.className).toContain("Form-cell Form-cell-guess");
+    });
+
+    it("should not render eyeIconWrapper correctly with default props", () => {
+      expect(eyeIconWrapper).toHaveLength(0);
+    });
+
+    it("should render left icon correctly with default props", () => {
+      expect(leftIconWrapper).toHaveLength(1);
+      expect(leftIcon).toHaveLength(1);
+      expect(leftIcon.props().src).toEqual("");
+    });
+
+    it("should render label correctly with default props", () => {
+      expect(label.text()).toEqual("");
+    });
+
+    it("should not render input field correctly with default props", () => {
+      expect(input.props().value).toEqual("");
+      expect(input.props().placeholder).toEqual("");
+      // expect(input.props().className).toContain("border-right-0");
+    });
+  });
+
+  describe("<FormCell /> with props", () => {
+    const wrapper = shallow(<FormCell {...props} />);
+    beforeEach(() => {
+      container = wrapper.find("div").first();
+      containerProps = container.props();
+      label = container.find("label");
+      input = container.find("[data-test='input']");
+      leftIconWrapper = container.find("[data-test='left-icon-wrapper']");
+      leftIcon = container.find("[data-test='left-icon']");
+      eyeIconWrapper = container.find("[data-test='eye-icon-wrapper']");
+      eyeIcon = container.find("[data-test='eye-icon']");
+    });
+
+    it("should render component wrapper correctly with default props ", () => {
+      expect(containerProps.className).toContain("Form-cell Form-cell-admin");
+    });
+
+    it("should not render eyeIconWrapper correctly with default props", () => {
+      expect(eyeIconWrapper).toHaveLength(1);
+      expect(eyeIconWrapper.props().className).toContain(
+        "Form-cell-admin__icon-right"
+      );
+    });
+
+    it("should render left icon correctly with default props", () => {
+      expect(leftIconWrapper).toHaveLength(0);
+      expect(leftIcon).toHaveLength(0);
+    });
+
+    it("should render label correctly with default props", () => {
+      expect(label.text()).toEqual("Password");
+    });
+
+    it("should not render input field correctly with default props", () => {
+      expect(input.props().value).toEqual(props.inputValue);
+      expect(input.props().placeholder).toEqual(props.inputPlaceholder);
+      // expect(input.props().className).toContain("border-right-0");
+    });
+  });
 });
 
-describe("<FormCell/> - no props", () => {
-  const wrapper = shallow(<FormCell />);
-  beforeEach(() => {
-    container = wrapper.find("div").first();
-    containerProps = container.props();
-    label = container.find("label");
-    errMsg = container.find("span");
-    input = container.find("[data-test='input']");
-    leftIconWrapper = container.find("[data-test='left-icon-wrapper']");
-    leftIcon = container.find("[data-test='left-icon']");
-    eyeIconWrapper = container.find("[data-test='eye-icon-wrapper']");
-    eyeIcon = container.find("[data-test='eye-icon']");
-  });
-
-  it("should render correctly with default props ", () => {
-    expect(containerProps.className).toContain("Form-cell Form-cell-guess");
-    expect(eyeIconWrapper).toHaveLength(0);
-    expect(leftIconWrapper).toHaveLength(1);
-    expect(leftIcon).toHaveLength(1);
-    expect(leftIcon.props().src).toEqual("");
-    expect(label.text()).toEqual("");
-    expect(input.props().value).toEqual("");
-    expect(input.props().placeholder).toEqual("");
-    // expect(input.props().className).toContain("border-right-0");
-  });
-});
-
-describe("<FormCell /> with props", () => {
-  const wrapper = shallow(<FormCell {...props} />);
-  beforeEach(() => {
-    container = wrapper.find("div").first();
-    containerProps = container.props();
-    label = container.find("label");
-    errMsg = container.find("span");
-    input = container.find("[data-test='input']");
-    leftIconWrapper = container.find("[data-test='left-icon-wrapper']");
-    leftIcon = container.find("[data-test='left-icon']");
-    eyeIconWrapper = container.find("[data-test='eye-icon-wrapper']");
-    eyeIcon = container.find("[data-test='eye-icon']");
-  });
-
-  it("should render correctly with passed props", () => {
-    expect(containerProps.className).toContain("Form-cell Form-cell-admin");
-    expect(eyeIconWrapper).toHaveLength(1);
-    expect(eyeIconWrapper.props().className).toContain(
-      "Form-cell-admin__icon-right"
-    );
-    expect(leftIconWrapper).toHaveLength(0);
-    expect(leftIcon).toHaveLength(0);
-    expect(label.text()).toEqual("Password");
-    expect(input.props().value).toEqual(props.inputValue);
-    expect(input.props().placeholder).toEqual(props.inputPlaceholder);
-  });
-});
-
-describe("<FormCell /> behavior", () => {
+describe("<FormCell /> - behavior", () => {
   let wrapper;
   beforeEach(() => {
     wrapper = mount(<FormCell {...props} />);
     container = wrapper.find("div").first();
-    containerProps = container.props();
-    label = container.find("label");
     errMsg = container.find("span");
-    input = container.find("[data-test='input']");
-    leftIconWrapper = container.find("[data-test='left-icon-wrapper']");
-    leftIcon = container.find("[data-test='left-icon']");
     eyeIconWrapper = container.find("[data-test='eye-icon-wrapper']");
     eyeIcon = container.find("[data-test='eye-icon']");
+    input = container.find("[data-test='input']");
   });
 
   afterEach(() => {
@@ -111,6 +132,12 @@ describe("<FormCell /> behavior", () => {
     expect(errMsg.props().className).toContain("d-none");
     expect(errMsg.text()).toEqual("");
   });
+
+  // it("should change input type to text when user click on eyeIcon", () => {
+  //   eyeIconWrapper.simulate("click");
+  //   wrapper.update();
+  //   expect(input.props().type).toEqual("text");
+  // });
 
   // it("should render error message when user input is invalid", () => {
   //   input.simulate("change", { target: { value: "@123" } });

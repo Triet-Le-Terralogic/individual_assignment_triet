@@ -4,7 +4,7 @@ import { shallow } from "enzyme";
 
 const props = {
   onUserInputHandler: jest.fn,
-  formInputstate: { Email: "test" },
+  formInputState: { Email: "test" },
   formTitle: "",
   formData: [
     {

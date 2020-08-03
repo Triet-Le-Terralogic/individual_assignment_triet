@@ -29,41 +29,43 @@ const props = {
 };
 let container, containerProps;
 
-it("should render without crash", () => {
-  shallow(<ButtonListWrapper />);
-});
-
-describe("<ButtonListWrapper/> - no props", () => {
-  const wrapper = shallow(<ButtonListWrapper />);
-  beforeEach(() => {
-    container = wrapper.find("div").first();
-    containerProps = container.props();
+describe("<ButtonListWrapper/> - render", () => {
+  it("should render without crash", () => {
+    shallow(<ButtonListWrapper />);
   });
 
-  it("should render correctly with default props ", () => {
-    expect(containerProps.className).toContain(
-      "Button-list-wrapper Button-list-wrapper-guess"
-    );
-  });
-  it("should'nt render any button with default dataButton = []", () => {
-    expect(container.children()).toHaveLength(0);
-  });
-});
+  describe("<ButtonListWrapper /> - noprops", () => {
+    const wrapper = shallow(<ButtonListWrapper />);
+    beforeEach(() => {
+      container = wrapper.find("div").first();
+      containerProps = container.props();
+    });
 
-describe("<ButtonListWrapper /> with props", () => {
-  const wrapper = shallow(<ButtonListWrapper {...props} />);
-  beforeEach(() => {
-    container = wrapper.find("div").first();
-    containerProps = container.props();
-  });
-
-  it("should render correctly with passed props", () => {
-    expect(containerProps.className).toContain(
-      "Button-list-wrapper Button-list-wrapper-admin"
-    );
+    it("should render correctly with default props ", () => {
+      expect(containerProps.className).toContain(
+        "Button-list-wrapper Button-list-wrapper-guess"
+      );
+    });
+    it("should'nt render any button with default dataButton = []", () => {
+      expect(container.children()).toHaveLength(0);
+    });
   });
 
-  it("should render buttonData.length button ", () => {
-    expect(container.find("Button")).toHaveLength(props.buttonData.length);
+  describe("<ButtonListWrapper /> with props", () => {
+    const wrapper = shallow(<ButtonListWrapper {...props} />);
+    beforeEach(() => {
+      container = wrapper.find("div").first();
+      containerProps = container.props();
+    });
+
+    it("should render correctly with passed props", () => {
+      expect(containerProps.className).toContain(
+        "Button-list-wrapper Button-list-wrapper-admin"
+      );
+    });
+
+    it("should render buttonData.length button ", () => {
+      expect(container.find("Button")).toHaveLength(props.buttonData.length);
+    });
   });
 });
