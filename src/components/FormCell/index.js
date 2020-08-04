@@ -31,7 +31,7 @@ export default function FormCell({
         setErrMsg(
           inputValidator({ userInput: inputValue, inputType: inputID })
         );
-      }, 1000);
+      }, 600);
     } else {
       mounted.current = true;
     }
