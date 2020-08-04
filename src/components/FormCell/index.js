@@ -28,7 +28,9 @@ export default function FormCell({
     if (mounted.current) {
       // Similar to componentDidUpdate
       validateTimeout = setTimeout(() => {
-        setErrMsg(inputValidator({ inputValue, inputID }));
+        setErrMsg(
+          inputValidator({ userInput: inputValue, inputType: inputID })
+        );
       }, 1000);
     } else {
       mounted.current = true;
@@ -56,6 +58,11 @@ export default function FormCell({
       </div>
     );
   }
+
+  inputStyle =
+    pageType === "admin" && inputType !== "password"
+      ? `${inputStyle} font-weight-bold`
+      : inputStyle;
 
   const formCellGuessIconLeft = (
     <div

@@ -1,30 +1,36 @@
 .Avatar-admin {
-	position: relative;
-	display: flex;
-	justify-content: flex-start;
-	align-items: center;
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 
-	&__image {
-		width: 60px;
-		height: 60px;
-	}
+  &__image {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
 
-	label {
-		position: absolute;
-		top: -16px;
-		left: 38px;
-		cursor: pointer;
-	}
+    &-wrapper {
+      width: 60px;
+      height: 60px;
+    }
+  }
 
-	&__title {
-		color: $admin-font-color;
-		text-transform: capitalize;
-		font-size: 32px;
-		margin: 0 24px;
-		font-weight: bold;
-	}
+  label {
+    position: absolute;
+    top: -16px;
+    left: 38px;
+    cursor: pointer;
+  }
 
-	& > input {
-		display: none;
-	}
+  &__title {
+    color: $admin-font-color;
+    text-transform: capitalize;
+    font-size: 32px;
+    margin: 0 24px;
+    font-weight: bold;
+  }
+
+  & > input {
+    display: none;
+  }
 }

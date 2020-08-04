@@ -6,7 +6,7 @@
   input {
     position: absolute;
     top: 3px;
-    left: -10px;
+    left: 0px;
     height: 18px;
     width: 18px;
     opacity: 0;
@@ -31,7 +31,7 @@
   &--custom {
     position: absolute;
     top: 3px;
-    left: -15px;
+    left: 0px;
     height: 18px;
     width: 18px;
     border: $border-width-custom solid $gray-400;
@@ -54,6 +54,6 @@
     color: $gray-600;
     font-size: 14px;
     font-weight: 600;
-    margin: 0 0 0 10px;
+    margin: 0 0 0 30px;
   }
 }

@@ -1,3 +1,5 @@
+import isEqual from "fast-deep-equal";
+
 export const transformToArr = (formObj) => {
   const formDataArr = [];
   for (const key in formObj) {
@@ -134,6 +136,26 @@ export const changeUserInfoValidator = ({
 export const uploadAvatarValidator = (fileType) => {
   const regex = /(.*?)\.(jpg|jpeg|png|svg|gif)$/;
   return regex.test(String(fileType));
+};
+
+export const submitToAPI = ({
+  validator,
+  curState,
+  snapShotState,
+  token,
+  APIHandler,
+}) => {
+  if (!isEqual(curState, snapShotState)) {
+    if (validator(curState)) {
+      APIHandler({
+        token,
+        data: curState,
+      });
+    } else {
+      return true;
+    }
+  }
+  return false;
 };
 
 const validatePassword = (password) => {

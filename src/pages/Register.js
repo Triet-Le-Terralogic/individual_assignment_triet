@@ -16,6 +16,7 @@ export default function Register({
   history = {},
 }) {
   const onSubmitFormHandler = () => {
+    console.log(formInputState);
     if (registerValidator(formInputState)) {
       onRegisterHandler(formInputState);
     } else {
