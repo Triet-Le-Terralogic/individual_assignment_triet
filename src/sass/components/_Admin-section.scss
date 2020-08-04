@@ -1,11 +1,9 @@
 .Admin-section {
-	border-bottom: 1px solid $admin-section-border-color;
+  &__header {
+    margin-bottom: 35px;
 
-	&__header {
-		margin: 35px 0;
-
-		&--color {
-			color: $admin-section-header-color;
-		}
-	}
+    &--color {
+      color: $admin-section-header-color;
+    }
+  }
 }

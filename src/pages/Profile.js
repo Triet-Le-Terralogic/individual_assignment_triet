@@ -232,6 +232,7 @@ export default function Profile({
           sectionHeader={avatarAdmin}
           sectionData={transformToArr(infoFormData)}
         />
+        <div className="section-break"></div>
         <AdminSection
           onUserInputHandler={onUserChangePasswordHandler}
           formInputState={formChangePasswordState}

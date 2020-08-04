@@ -10,7 +10,7 @@ export default function AvatarAdmin({
   return (
     <div className="Avatar-admin">
       <div
-        className="Avatar-admin__image"
+        className="Avatar-admin__image-wrapper"
         test-data="avatar-admin-image-wrapper"
       >
         <img
