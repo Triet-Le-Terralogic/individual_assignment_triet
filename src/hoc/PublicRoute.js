@@ -8,9 +8,9 @@ export const PublicRoute = ({
 }) => {
   return (
     <Route
-      render={() =>
+      render={(props) =>
         authenticated === false ? (
-          <Component {...rest} />
+          <Component {...props} {...rest} />
         ) : (
           <Redirect to="/profile" />
         )
