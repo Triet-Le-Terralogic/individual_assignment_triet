@@ -59,6 +59,11 @@ export default function FormCell({
     );
   }
 
+  inputStyle =
+    pageType === "admin" && inputType !== "password"
+      ? `${inputStyle} font-weight-bold`
+      : inputStyle;
+
   const formCellGuessIconLeft = (
     <div
       className="Form-cell-guess__icon-left input-group-prepend"
