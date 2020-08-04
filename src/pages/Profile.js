@@ -8,6 +8,7 @@ import AdminSection from "../components/AdminSection";
 import trumpAvatar from "../assets/img/test_avatar.jpg";
 import ButtonListWrapper from "../components/ButtonListWrapper";
 import isEqual from "fast-deep-equal";
+import { submitToAPI } from "../helper";
 
 import {
   transformToArr,
@@ -123,45 +124,42 @@ export default function Profile({
 
   const onSubmitFormHandler = () => {
     let isTriggered = 0;
-    let triggerData = {
-      header: "",
-      body: "",
-    };
-    // Check if password field have changed? then validate.
-    if (!isEqual(formChangePasswordState, changePasswordSnapShot.current)) {
-      if (changePasswordValidator(formChangePasswordState)) {
-        const changePassData = {
-          token: token,
-          passwordData: formChangePasswordState,
-        };
-        onChangePasswordHandler(changePassData);
-      } else {
-        // Popup invalid form
-        triggerData.header = "Change password failed!";
-        triggerData.body =
-          "Invalid password or confirm password does not match.";
-        isTriggered++;
-      }
+    let triggerData = {};
+
+    // Change password
+    if (
+      submitToAPI({
+        validator: changePasswordValidator,
+        curState: formChangePasswordState,
+        snapShotState: changePasswordSnapShot.current,
+        token,
+        APIHandler: onChangePasswordHandler,
+      })
+    ) {
+      triggerData.header = "Change password failed!";
+      triggerData.body = "Invalid password or confirm password does not match.";
+      isTriggered++;
+    }
+    // Change user profile
+    if (
+      submitToAPI({
+        validator: changeUserInfoValidator,
+        curState: userInfoState,
+        snapShotState: userInfoSnapShot.current,
+        token,
+        APIHandler: onUploadUserInfo,
+      })
+    ) {
+      triggerData.header = "Change profile failed!";
+      triggerData.body = "Invalid name/email/phone.";
+      isTriggered++;
     }
 
-    if (!isEqual(userInfoState, userInfoSnapShot.current)) {
-      if (changeUserInfoValidator(userInfoState)) {
-        const uploadUserInfoData = {
-          token: token,
-          dataUpload: userInfoState,
-        };
-        onUploadUserInfo(uploadUserInfoData);
-      } else {
-        // Popup invlaid form
-        triggerData.header = "Change prifile failed!";
-        triggerData.body = "Invalid name/email/phone.";
-        isTriggered++;
-      }
-    }
-
-    if (isTriggered === 2 || isTriggered === 1) {
+    if (isTriggered === 2) {
       triggerData.header = "Notification!";
       triggerData.body = "Invalid password/name/email/phone.";
+      onTriggerNotificationHandler(triggerData);
+    } else if (isTriggered === 1) {
       onTriggerNotificationHandler(triggerData);
     }
   };
