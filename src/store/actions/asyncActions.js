@@ -9,7 +9,7 @@ export const postRegisterData = (registerData) => {
         method: "POST",
         url: "http://api.terralogic.ngrok.io/api/register",
         data: {
-          ...JSON.stringify(registerData),
+          ...registerData,
         },
       });
 
@@ -31,7 +31,7 @@ export const postLoginData = (loginData) => {
           "Content-Type": "application/json",
         },
         url: "http://api.terralogic.ngrok.io/api/login",
-        data: JSON.stringify(loginData),
+        data: loginData,
       });
       dispatch(actions.onLoginSuccess(respData.data));
     } catch (error) {
@@ -56,7 +56,7 @@ export const changePassword = ({ data, token }) => {
           Authorization: `Bearer ${token}`,
         },
         url: "http://api.terralogic.ngrok.io/api/changePassword",
-        data: JSON.stringify(dataSend),
+        data: dataSend,
       });
 
       dispatch(actions.onChangePassSuccess(respData.data));
